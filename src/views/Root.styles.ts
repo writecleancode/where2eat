@@ -1,8 +1,12 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
+	margin-top: 1.6rem;
+	padding: 0.8rem;
+`;
+
+export const ControlsWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
-	gap: 1.6rem;
-	margin-top: 2.4rem;
+	gap: 0.8rem;
 `;

@@ -27,7 +27,7 @@ img {
 }
 
 a,
-button {
+button, select {
     cursor: pointer;
     font-family: inherit;
 }
