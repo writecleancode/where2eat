@@ -1,12 +1,13 @@
 import { useState } from 'react';
-import { BurgerButton } from 'src/components/atoms/BurgerButton/BurgerButton';
 import { MobileNav } from 'src/components/organisms/MovileNav/MobileNav';
+import { BurgerButton } from 'src/components/atoms/BurgerButton/BurgerButton';
 import { AppTitle, AppDescription, Wrapper, DecorationLine, TitleWrapper } from './Header.styles';
 
 export const Header = () => {
 	const [isNavOpen, setNavState] = useState(false);
 
 	const handleNav = () => setNavState(prevState => !prevState);
+	const closeNav = () => setNavState(false)
 
 	return (
 		<Wrapper>
@@ -16,9 +17,9 @@ export const Header = () => {
 				</AppTitle>
 				<DecorationLine />
 				<AppDescription>Find place to kill your hunger</AppDescription>
-				<BurgerButton onClick={handleNav} />
+				<BurgerButton isNavOpen={isNavOpen} onClick={handleNav} />
 			</TitleWrapper>
-			<MobileNav isNavOpen={isNavOpen} />
+			<MobileNav isNavOpen={isNavOpen} closeNav={closeNav} />
 		</Wrapper>
 	);
 };

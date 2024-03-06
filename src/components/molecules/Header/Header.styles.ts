@@ -28,7 +28,7 @@ export const TitleWrapper = styled.div`
 `;
 
 export const AppTitle = styled.h1`
-	font-size: 2.6rem;
+	font-size: 2.4rem;
 	font-weight: bold;
 
 	span {

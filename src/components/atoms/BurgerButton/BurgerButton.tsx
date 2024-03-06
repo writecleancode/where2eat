@@ -1,11 +1,16 @@
-import { HamburgerWrapper } from './BurherButton.styles';
+import { HamburgerLineBottom, HamburgerLineMiddle, HamburgerLineTop, HamburgerWrapper } from './BurgerButton.styles';
 
-export const BurgerButton = ({ ...props }) => {
+type BurgerButtonProps = {
+	isNavOpen: boolean;
+	onClick: () => void;
+};
+
+export const BurgerButton = ({ isNavOpen, ...props }: BurgerButtonProps) => {
 	return (
 		<HamburgerWrapper {...props}>
-			<span className='hamburger-box'>
-				<span className='hamburger-inner'></span>
-			</span>
+			<HamburgerLineTop $isNavOpen={isNavOpen} />
+			<HamburgerLineMiddle $isNavOpen={isNavOpen} />
+			<HamburgerLineBottom $isNavOpen={isNavOpen} />
 		</HamburgerWrapper>
 	);
 };
