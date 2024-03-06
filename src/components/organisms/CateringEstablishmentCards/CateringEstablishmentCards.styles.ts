@@ -4,5 +4,5 @@ export const Wrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 1.6rem;
-	margin-top: 2.4rem;
+	margin-top: 1.6rem;
 `;

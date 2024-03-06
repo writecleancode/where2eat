@@ -1,6 +1,6 @@
 import { cateringEstablishments } from 'src/data/cateringEstablishments';
 import { CateringEstablishmentCard } from 'src/components/molecules/CateringEstablishmentCard/CateringEstablishmentCard';
-import { Wrapper } from './CateringEstablishmentCard.styles';
+import { Wrapper } from './CateringEstablishmentCards.styles';
 
 export const CateringEstablishmentCards = () => {
 	return (

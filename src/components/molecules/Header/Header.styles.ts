@@ -1,9 +1,13 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
+	position: relative;
 	position: sticky;
 	top: 0;
 	z-index: 9999;
+`;
+
+export const TitleWrapper = styled.div`
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
