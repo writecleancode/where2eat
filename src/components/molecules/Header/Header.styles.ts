@@ -27,9 +27,14 @@ export const TitleWrapper = styled.div`
 	}
 `;
 
-export const AppTitle = styled.h1`
-	font-size: 2.4rem;
-	font-weight: bold;
+export const AppTitle = styled.a`
+	padding: 0.3rem 0.8rem;
+	translate: -0.8rem;
+
+	h1 {
+		font-size: 2.4rem;
+		font-weight: bold;
+	}
 
 	span {
 		color: ${({ theme }) => theme.colors.primaryLight};

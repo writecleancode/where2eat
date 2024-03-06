@@ -13,6 +13,9 @@ export const Wrapper = styled.div<{ $isActive: boolean }>`
 		$isActive ? 'polygon(0 0, 100% 0%, 100% 100%, 0% 100%)' : 'polygon(0 0, 100% 0%, 100% 0%, 0 0%)'};
 	pointer-events: ${({ $isActive }) => ($isActive ? 'auto' : 'none')};
 	transition: clip-path 0.4s;
+
+	overflow: scroll;
+	max-height: calc(100vh - 51px);
 `;
 
 export const NavButtonsWrapper = styled.div`

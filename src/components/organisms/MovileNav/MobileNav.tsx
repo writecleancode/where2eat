@@ -1,13 +1,12 @@
+import { useContext } from 'react';
+import { NavContext } from 'src/providers/NavProvider';
 import { cateringEstabilishmentsTypes } from 'src/data/cateringEstabilishmentsTypes';
 import { StyledNavButton } from 'src/components/atoms/StyledLink/StyledNavButton';
 import { HorizontalLine, NavButtonsWrapper, Wrapper } from './MobileNav.styles';
 
-type MobileNavProps = {
-	isNavOpen: boolean;
-	closeNav: () => void;
-};
+export const MobileNav = () => {
+	const { isNavOpen, closeNav } = useContext(NavContext);
 
-export const MobileNav = ({ isNavOpen, closeNav }: MobileNavProps) => {
 	return (
 		<Wrapper $isActive={isNavOpen}>
 			<NavButtonsWrapper>
@@ -39,11 +38,6 @@ export const MobileNav = ({ isNavOpen, closeNav }: MobileNavProps) => {
 			<StyledNavButton $isActive={false} onClick={closeNav}>
 				Ongoing Promotions
 			</StyledNavButton>
-
-			<StyledNavButton $isActive={false} onClick={closeNav}>
-				Ongoing Promotions
-			</StyledNavButton>
-            
 		</Wrapper>
 	);
 };
