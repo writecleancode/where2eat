@@ -14,6 +14,10 @@ export const HamburgerWrapper = styled.button`
 	&:hover {
 		opacity: 0.6;
 	}
+
+	@media (min-width: 1020px) {
+		display: none;
+	}
 `;
 
 export const HamburgerLine = styled.span<{ $isNavOpen: boolean }>`

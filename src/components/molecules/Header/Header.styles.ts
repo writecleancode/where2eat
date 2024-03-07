@@ -5,6 +5,10 @@ export const Wrapper = styled.div`
 	position: sticky;
 	top: 0;
 	z-index: 9999;
+
+	@media (min-width: 992px) {
+		grid-column: 1 / 3;
+	}
 `;
 
 export const TitleWrapper = styled.div`
@@ -24,6 +28,10 @@ export const TitleWrapper = styled.div`
 	@media (min-width: 600px) {
 		justify-content: flex-start;
 		gap: 1.6rem;
+	}
+
+	@media (min-width: 1020px) {
+		justify-content: center;
 	}
 `;
 

@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { NavContext } from 'src/providers/NavProvider';
-import { MobileNav } from 'src/components/organisms/MovileNav/MobileNav';
+import { MobileNav } from 'src/components/organisms/MobileNav/MobileNav';
 import { BurgerButton } from 'src/components/atoms/BurgerButton/BurgerButton';
 import { AppTitle, AppDescription, Wrapper, DecorationLine, TitleWrapper } from './Header.styles';
 
