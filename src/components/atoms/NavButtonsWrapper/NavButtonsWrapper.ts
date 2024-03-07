@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-export const NavButtonsWrapper = styled.div`
-	display: flex;
+export const NavButtonsWrapper = styled.div<{ $isDesktop?: boolean }>`
+	display: ${({ $isDesktop }) => ($isDesktop ? 'none' : 'flex')};
 	flex-direction: column;
 	gap: 0.8rem;
 

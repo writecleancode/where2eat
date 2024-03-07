@@ -5,8 +5,6 @@ export const NavDeskopColumn = styled.div`
 	padding: 4.8rem 2.4rem;
 
 	@media (min-width: 1020px) {
-		position: sticky;
-		top: 0;
 		display: block;
 	}
 `;

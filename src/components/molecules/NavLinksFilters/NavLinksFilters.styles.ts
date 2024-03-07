@@ -19,4 +19,8 @@ export const SeparatingLine = styled(HorizontalLine)`
 		background-color: ${({ theme }) => theme.colors.black50};
 		transform: scaleX(1.1);
 	}
+
+	@media (min-width: 1400px) {
+		display: none;
+	}
 `;

@@ -5,12 +5,16 @@ import { NavButtonsWrapper } from 'src/components/atoms/NavButtonsWrapper/NavBut
 import { StyledNavButton } from 'src/components/atoms/StyledLink/StyledNavButton';
 import { SeparatingLine } from './NavLinksFilters.styles';
 
-export const NavLinksFilters = () => {
+type NavLinksFiltersProps = {
+	$isDesktop?: boolean;
+};
+
+export const NavLinksFilters = ({ $isDesktop }: NavLinksFiltersProps) => {
 	const { closeNav } = useContext(NavContext);
 
 	return (
 		<>
-			<NavButtonsWrapper>
+			<NavButtonsWrapper $isDesktop={$isDesktop}>
 				{cateringEstabilishmentsTypes.map(type => (
 					<StyledNavButton key={type.value} $isActive={false} $isReversed onClick={closeNav}>
 						{type.title}

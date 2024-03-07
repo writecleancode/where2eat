@@ -6,8 +6,12 @@ export const Wrapper = styled.div`
 	top: 0;
 	z-index: 9999;
 
-	@media (min-width: 992px) {
+	@media (min-width: 1020px) {
 		grid-column: 1 / 3;
+	}
+
+	@media (min-width: 1400px) {
+		grid-column: 1 / 4;
 	}
 `;
 
@@ -36,6 +40,7 @@ export const TitleWrapper = styled.div`
 `;
 
 export const AppTitle = styled.a`
+	margin-right: -1.4rem;
 	padding: 0.3rem 0.8rem;
 	translate: -0.8rem;
 

@@ -21,8 +21,8 @@ export const StyledNavButton = styled.button<{ $isActive: boolean; $isReversed?:
 		z-index: -1;
 		background-image: ${({ $isReversed }) =>
 			$isReversed
-				? 'linear-gradient(-90deg, #e5e5e5 0%, #d9d9d900 85%)'
-				: 'linear-gradient(90deg, #e5e5e5 0%, #d9d9d900 85%)'};
+				? 'linear-gradient(-90deg, #d9d9d9 0%, #e5e5e500 85%)'
+				: 'linear-gradient(90deg, #d9d9d9 0%, #e5e5e500 85%)'};
 		opacity: ${({ $isActive }) => ($isActive ? '1' : '0.6')};
 		transition: opacity 0.2s;
 	}
@@ -40,14 +40,30 @@ export const StyledNavButton = styled.button<{ $isActive: boolean; $isReversed?:
 	}
 
 	&:hover {
-		/* color: ${({ theme }) => theme.colors.primaryLight}; */
-
 		&::before {
 			opacity: 1;
 		}
 
 		&::after {
 			background-color: ${({ theme }) => theme.colors.primary};
+		}
+	}
+
+	@media (min-width: 1400px) {
+		text-align: ${({ $isReversed }) => (!$isReversed ? 'right' : 'left')};
+
+		&::before {
+			background-image: ${({ $isReversed }) =>
+				!$isReversed
+					? 'linear-gradient(-90deg, #d9d9d9 0%, #e5e5e500 85%)'
+					: 'linear-gradient(90deg, #d9d9d9 0%, #e5e5e500 85%)'};
+		}
+
+		&::after {
+			left: auto;
+			right: auto;
+			${({ $isReversed }) => (!$isReversed ? 'right: 0;' : 'left: 0;')}
+			translate: ${({ $isReversed }) => (!$isReversed ? '100%' : '-100%')};
 		}
 	}
 `;
