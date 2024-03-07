@@ -5,12 +5,12 @@ import { BurgerButton } from 'src/components/atoms/BurgerButton/BurgerButton';
 import { AppTitle, AppDescription, Wrapper, DecorationLine, TitleWrapper } from './Header.styles';
 
 export const Header = () => {
-	const { handleNav } = useContext(NavContext);
+	const { handleNav, closeNav } = useContext(NavContext);
 
 	return (
 		<Wrapper>
 			<TitleWrapper>
-				<AppTitle href='#'>
+				<AppTitle href='#' onClick={closeNav}>
 					<h1>
 						Where2<span>Eat</span>
 					</h1>

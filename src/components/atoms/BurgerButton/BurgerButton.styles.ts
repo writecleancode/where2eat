@@ -7,6 +7,7 @@ export const HamburgerWrapper = styled.button`
 	margin-left: auto;
 	padding: 1.2rem;
 	border: none;
+	background-color: transparent;
 	translate: 0.8rem;
 	transition: opacity 0.3s;
 

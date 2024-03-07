@@ -3,6 +3,7 @@ import {
 	IconsWrapper,
 	Info,
 	InfoDesciption,
+	InfoRow,
 	InfoWrapper,
 	Picture,
 	Title,
@@ -41,28 +42,28 @@ export const CateringEstablishmentCard = ({
 		<Wrapper>
 			<Title>{name}</Title>
 			<Picture src={imgURL} alt={imgAlt} />
-			<div>
-				<InfoWrapper>
+			<InfoWrapper>
+				<InfoRow>
 					<Info>{distance}</Info>
 					<InfoDesciption>{adress}</InfoDesciption>
-				</InfoWrapper>
-				<InfoWrapper>
+				</InfoRow>
+				<InfoRow>
 					<Info>{type}</Info>
 					<InfoDesciption>Type</InfoDesciption>
-				</InfoWrapper>
-				<InfoWrapper>
+				</InfoRow>
+				<InfoRow>
 					<Info>{ratings} / 5</Info>
 					<InfoDesciption>Ratings</InfoDesciption>
-				</InfoWrapper>
-				<InfoWrapper>
+				</InfoRow>
+				<InfoRow>
 					<Info>{prices}</Info>
 					<InfoDesciption>Prices</InfoDesciption>
-				</InfoWrapper>
-				<InfoWrapper>
+				</InfoRow>
+				<InfoRow>
 					<Info>16:00 - 22:00</Info>
 					<InfoDesciption>Today</InfoDesciption>
-				</InfoWrapper>
-			</div>
+				</InfoRow>
+			</InfoWrapper>
 			<IconsWrapper>
 				<IconButton iconURL='/src/assets/icons/info.svg' label='Show more details' />
 				<IconButton
