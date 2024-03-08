@@ -19,4 +19,4 @@ export type catetingEstablishmentsType = {
 		suturday: string;
 		saunday: string;
 	};
-}[];
+};

@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { NavContext } from 'src/providers/NavProvider';
 import { cateringEstabilishmentsTypes } from 'src/data/cateringEstabilishmentsTypes';
 import { NavButtonsWrapper } from 'src/components/atoms/NavButtonsWrapper/NavButtonsWrapper';
-import { StyledNavButton } from 'src/components/atoms/StyledLink/StyledNavButton';
+import { StyledNavLink } from 'src/components/atoms/StyledLink/StyledNavButton';
 import { SeparatingLine } from './NavLinksFilters.styles';
 
 type NavLinksFiltersProps = {
@@ -15,10 +15,10 @@ export const NavLinksFilters = ({ $isDesktop }: NavLinksFiltersProps) => {
 	return (
 		<>
 			<NavButtonsWrapper $isDesktop={$isDesktop}>
-				{cateringEstabilishmentsTypes.map(type => (
-					<StyledNavButton key={type.value} $isActive={false} $isReversed onClick={closeNav}>
-						{type.title}
-					</StyledNavButton>
+				{cateringEstabilishmentsTypes.map(({title, value, path}) => (
+					<StyledNavLink to={`/${path}`} key={value} $isActive={false} $isReversed onClick={closeNav}>
+						{title}
+					</StyledNavLink>
 				))}
 			</NavButtonsWrapper>
 			<SeparatingLine />

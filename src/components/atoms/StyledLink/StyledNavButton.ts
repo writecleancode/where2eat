@@ -1,6 +1,7 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-export const StyledNavButton = styled.button<{ $isActive: boolean; $isReversed?: boolean }>`
+export const StyledNavLink = styled(Link)<{ $isActive: boolean; $isReversed?: boolean }>`
 	position: relative;
 	display: inline-block;
 	padding: 0.4rem 1.6rem;

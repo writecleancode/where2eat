@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { IconButton } from 'src/components/atoms/IconButton/IconButton';
 import {
 	IconsWrapper,
@@ -9,35 +10,22 @@ import {
 	Title,
 	Wrapper,
 } from './CateringEstablishmentCard.styles';
+import { catetingEstablishmentsType } from 'src/types/types';
 
 type CateringEstablishmentCardProps = {
-	cateringEstablishment: {
-		id: string;
-		type: string;
-		name: string;
-		imgURL: string;
-		imgAlt: string;
-		adress: string;
-		adressLong: string;
-		distance: string;
-		ratings: string;
-		prices: string;
-		phoneNumber: string;
-		openHours: {
-			monday: string;
-			tuesday: string;
-			wednesday: string;
-			thursday: string;
-			friday: string;
-			suturday: string;
-			saunday: string;
-		};
-	};
+	cateringEstablishment: catetingEstablishmentsType;
 };
 
 export const CateringEstablishmentCard = ({
-	cateringEstablishment: { type, name, imgURL, imgAlt, adress, distance, ratings, prices },
+	cateringEstablishment: { id, type, name, imgURL, imgAlt, adress, distance, ratings, prices },
 }: CateringEstablishmentCardProps) => {
+	const markAsVisited = (id: string) => {
+		axios
+			.post('/visited', { clickedId: id })
+			.then(res => console.log(res))
+			.catch(err => console.log(err));
+	};
+
 	return (
 		<Wrapper>
 			<Title>{name}</Title>
@@ -70,6 +58,7 @@ export const CateringEstablishmentCard = ({
 					iconURL='/src/assets/icons/check.svg'
 					iconTwoURL='/src/assets/icons/check-fill.svg'
 					label='Mark as visited'
+					onClick={() => markAsVisited(id)}
 				/>
 				<IconButton
 					iconURL='/src/assets/icons/heart.svg'

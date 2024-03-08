@@ -1,33 +1,26 @@
 import { useContext } from 'react';
 import { NavContext } from 'src/providers/NavProvider';
+import { navCategories } from 'src/data/navCategories';
 import { NavButtonsWrapper } from 'src/components/atoms/NavButtonsWrapper/NavButtonsWrapper';
-import { StyledNavButton } from 'src/components/atoms/StyledLink/StyledNavButton';
+import { StyledNavLink } from 'src/components/atoms/StyledLink/StyledNavButton';
 import { HorizontalLine } from 'src/components/atoms/HorizontalLine/HorizontalLine';
+import { CategoryContext } from 'src/providers/CategoryProvider';
 
 export const NavLinks = () => {
 	const { closeNav } = useContext(NavContext);
+	const { currentCategory } = useContext(CategoryContext);
 
 	return (
 		<NavButtonsWrapper>
-			<StyledNavButton onClick={closeNav} $isActive={true}>
-				All
-			</StyledNavButton>
-			<StyledNavButton onClick={closeNav} $isActive={false}>
-				Unvisited
-			</StyledNavButton>
-			<StyledNavButton onClick={closeNav} $isActive={false}>
-				Favourites
-			</StyledNavButton>
-			<StyledNavButton onClick={closeNav} $isActive={false}>
-				Highly Rated
-			</StyledNavButton>
-			<StyledNavButton onClick={closeNav} $isActive={false}>
-				Currently Open
-			</StyledNavButton>
+			{navCategories.map(({ title, value, path }) => (
+				<StyledNavLink to={`/${path}`} key={value} onClick={closeNav} $isActive={currentCategory === path}>
+					{title}
+				</StyledNavLink>
+			))}
 			<HorizontalLine $isShort />
-			<StyledNavButton $isActive={false} onClick={closeNav}>
+			<StyledNavLink to={`/ongoing-promotions`} $isActive={currentCategory === 'ongoing-promotions'} onClick={closeNav}>
 				Ongoing Promotions
-			</StyledNavButton>
+			</StyledNavLink>
 		</NavButtonsWrapper>
 	);
 };
