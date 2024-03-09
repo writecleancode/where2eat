@@ -20,6 +20,8 @@ export const cateringEstablishments = [
 			suturday: '10:00 - 23:00',
 			saunday: '10:00 - 23:00',
 		},
+		isVisited: false,
+		isFavourite: false,
 	},
 	{
 		id: '2',
@@ -42,6 +44,8 @@ export const cateringEstablishments = [
 			suturday: '14:00 - 01:00',
 			saunday: '13:00 - 00:00',
 		},
+		isVisited: false,
+		isFavourite: false,
 	},
 	{
 		id: '3',
@@ -64,6 +68,8 @@ export const cateringEstablishments = [
 			suturday: '14:00 - 01:00',
 			saunday: '14:00 - 01:00',
 		},
+		isVisited: false,
+		isFavourite: false,
 	},
 	{
 		id: '4',
@@ -86,6 +92,8 @@ export const cateringEstablishments = [
 			suturday: '10:00 - 02:00',
 			saunday: '11:00 - 00:00',
 		},
+		isVisited: false,
+		isFavourite: false,
 	},
 	{
 		id: '5',
@@ -108,6 +116,8 @@ export const cateringEstablishments = [
 			suturday: '11:00 - 23:00',
 			saunday: '11:00 - 22:00',
 		},
+		isVisited: false,
+		isFavourite: false,
 	},
 	{
 		id: '6',
@@ -130,6 +140,8 @@ export const cateringEstablishments = [
 			suturday: '12:00 - 23:00',
 			saunday: '12:00 - 23:00',
 		},
+		isVisited: false,
+		isFavourite: false,
 	},
 	{
 		id: '7',
@@ -152,6 +164,8 @@ export const cateringEstablishments = [
 			suturday: '09:00 - 00:00',
 			saunday: '09:00 - 00:00',
 		},
+		isVisited: false,
+		isFavourite: false,
 	},
 	{
 		id: '8',
@@ -174,6 +188,8 @@ export const cateringEstablishments = [
 			suturday: '11:00 - 21:00',
 			saunday: '12:00 - 20:00',
 		},
+		isVisited: false,
+		isFavourite: false,
 	},
 	{
 		id: '9',
@@ -196,6 +212,8 @@ export const cateringEstablishments = [
 			suturday: '08:00 - 23:00',
 			saunday: '08:00 - 23:00',
 		},
+		isVisited: false,
+		isFavourite: false,
 	},
 	{
 		id: '10',
@@ -218,6 +236,8 @@ export const cateringEstablishments = [
 			suturday: '03:00 - 00:00',
 			saunday: '03:00 - 00:00',
 		},
+		isVisited: false,
+		isFavourite: false,
 	},
 	{
 		id: '11',
@@ -240,6 +260,8 @@ export const cateringEstablishments = [
 			suturday: '11:00 - 23:00',
 			saunday: '11:00 - 23:00',
 		},
+		isVisited: false,
+		isFavourite: false,
 	},
 	{
 		id: '12',
@@ -262,6 +284,8 @@ export const cateringEstablishments = [
 			suturday: '14:00 - 23:00',
 			saunday: '14:00 - 23:00',
 		},
+		isVisited: false,
+		isFavourite: false,
 	},
 	{
 		id: '13',
@@ -284,5 +308,7 @@ export const cateringEstablishments = [
 			suturday: '17:00 - 02:00',
 			saunday: '16:00 - 01:00',
 		},
+		isVisited: false,
+		isFavourite: false,
 	},
 ];

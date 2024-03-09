@@ -1,3 +1,4 @@
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { IconButton } from 'src/components/atoms/IconButton/IconButton';
 import {
@@ -13,16 +14,26 @@ import {
 import { catetingEstablishmentsType } from 'src/types/types';
 
 type CateringEstablishmentCardProps = {
+	getCateringEstablishments: () => void;
 	cateringEstablishment: catetingEstablishmentsType;
 };
 
 export const CateringEstablishmentCard = ({
-	cateringEstablishment: { id, type, name, imgURL, imgAlt, adress, distance, ratings, prices },
+	getCateringEstablishments,
+	cateringEstablishment: { id, type, name, imgURL, imgAlt, adress, distance, ratings, prices, isVisited, isFavourite },
 }: CateringEstablishmentCardProps) => {
+	const { category } = useParams();
+
 	const markAsVisited = (id: string) => {
 		axios
 			.post('/visited', { clickedId: id })
-			.then(res => console.log(res))
+			.then(res => {
+				console.log(res);
+
+				if (category === 'unvisited') {
+					getCateringEstablishments();
+				}
+			})
 			.catch(err => console.log(err));
 	};
 
@@ -59,11 +70,13 @@ export const CateringEstablishmentCard = ({
 					iconTwoURL='/src/assets/icons/check-fill.svg'
 					label='Mark as visited'
 					onClick={() => markAsVisited(id)}
+					isActive={isVisited}
 				/>
 				<IconButton
 					iconURL='/src/assets/icons/heart.svg'
 					iconTwoURL='/src/assets/icons/heart-fill.svg'
 					label='Add to favorites'
+					isActive={isFavourite}
 				/>
 			</IconsWrapper>
 		</Wrapper>

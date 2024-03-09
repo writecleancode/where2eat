@@ -1,7 +1,7 @@
 import { HttpResponse, http } from 'msw';
 import { cateringEstablishments } from 'src/data/cateringEstablishments';
 
-let visited: string[] = [];
+let visited: string[] = JSON.parse(localStorage.getItem('visited') as string) || [];
 
 export const handlers = [
 	http.get('/:category', ({ params }) => {
@@ -12,7 +12,7 @@ export const handlers = [
 				});
 
 			case 'unvisited':
-				const matchingCateringEstablishments = cateringEstablishments.filter(el => visited.includes(el.id));
+				const matchingCateringEstablishments = cateringEstablishments.filter(el => !visited.includes(el.id));
 				return HttpResponse.json({
 					matchingCateringEstablishments: matchingCateringEstablishments,
 				});
@@ -43,6 +43,7 @@ export const handlers = [
 		const { clickedId } = (await request.json()) as Record<string, string>;
 
 		visited.includes(clickedId) ? (visited = visited.filter(id => id !== clickedId)) : visited.push(clickedId);
+		localStorage.setItem('visited', JSON.stringify(visited));
 
 		return new HttpResponse(null, { status: 200 });
 	}),

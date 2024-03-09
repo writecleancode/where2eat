@@ -17,7 +17,7 @@ export const CategoryContext = createContext<CategoryContextType>({
 export const CategoryProvider = ({ children }: CategoryProviderProps) => {
 	const [currentCategory, setCurrentCategory] = useState('');
 
-	const setCategory = (category: string) => setCurrentCategory(category);
+	const setCategory = (category = 'all') => setCurrentCategory(category);
 
 	return (
 		<CategoryContext.Provider

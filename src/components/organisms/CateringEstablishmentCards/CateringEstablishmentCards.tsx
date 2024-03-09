@@ -12,11 +12,15 @@ export const CateringEstablishmentCards = () => {
 	const { category } = useParams();
 	const { setCategory } = useContext(CategoryContext);
 
-	useEffect(() => {
+	const getCateringEstablishments = () => {
 		axios
 			.get(`/${category}`)
 			.then(({ data }) => setCateringEstablishments(data.matchingCateringEstablishments))
 			.catch(error => console.log(error));
+	};
+
+	useEffect(() => {
+		getCateringEstablishments();
 
 		category && setCategory(category);
 	}, [category]);
@@ -25,7 +29,11 @@ export const CateringEstablishmentCards = () => {
 		<Wrapper>
 			{cateringEstablishments.length ? (
 				cateringEstablishments.map(cateringEstablishment => (
-					<CateringEstablishmentCard key={cateringEstablishment.id} cateringEstablishment={cateringEstablishment} />
+					<CateringEstablishmentCard
+						key={cateringEstablishment.id}
+						cateringEstablishment={cateringEstablishment}
+						getCateringEstablishments={getCateringEstablishments}
+					/>
 				))
 			) : (
 				<LoadingGif />

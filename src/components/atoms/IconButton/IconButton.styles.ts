@@ -21,7 +21,7 @@ export const Icon = styled.img`
 	transition: clip-path 0.3s;
 `;
 
-export const IconTwo = styled(Icon)<{ $isActive: boolean }>`
+export const IconTwo = styled(Icon)<{ $isActive?: boolean }>`
 	position: absolute;
 	inset: 0;
 	padding: inherit;

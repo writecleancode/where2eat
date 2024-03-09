@@ -19,4 +19,6 @@ export type catetingEstablishmentsType = {
 		suturday: string;
 		saunday: string;
 	};
+	isVisited: boolean;
+	isFavourite: boolean;
 };
