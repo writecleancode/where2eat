@@ -1,5 +1,3 @@
-import { useParams } from 'react-router-dom';
-import axios from 'axios';
 import { IconButton } from 'src/components/atoms/IconButton/IconButton';
 import {
 	IconsWrapper,
@@ -14,29 +12,16 @@ import {
 import { catetingEstablishmentsType } from 'src/types/types';
 
 type CateringEstablishmentCardProps = {
-	getCateringEstablishments: () => void;
+	index: number;
+	markAsVisited: (index: number, id: string) => void;
 	cateringEstablishment: catetingEstablishmentsType;
 };
 
 export const CateringEstablishmentCard = ({
-	getCateringEstablishments,
+	markAsVisited,
+	index,
 	cateringEstablishment: { id, type, name, imgURL, imgAlt, adress, distance, ratings, prices, isVisited, isFavourite },
 }: CateringEstablishmentCardProps) => {
-	const { category } = useParams();
-
-	const markAsVisited = (id: string) => {
-		axios
-			.post('/visited', { clickedId: id })
-			.then(res => {
-				console.log(res);
-
-				if (category === 'unvisited') {
-					getCateringEstablishments();
-				}
-			})
-			.catch(err => console.log(err));
-	};
-
 	return (
 		<Wrapper>
 			<Title>{name}</Title>
@@ -70,7 +55,7 @@ export const CateringEstablishmentCard = ({
 					iconTwoURL='/src/assets/icons/check-fill.svg'
 					label='Mark as visited'
 					isActive={isVisited}
-					onClick={() => markAsVisited(id)}
+					onClick={() => markAsVisited(index, id)}
 				/>
 				<IconButton
 					iconURL='/src/assets/icons/heart.svg'

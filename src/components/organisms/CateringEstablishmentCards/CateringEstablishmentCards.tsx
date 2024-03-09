@@ -19,6 +19,23 @@ export const CateringEstablishmentCards = () => {
 			.catch(error => console.log(error));
 	};
 
+	const markAsVisited = (index: number, id: string) => {
+		setCateringEstablishments([
+			...cateringEstablishments.slice(0, index),
+			{ ...cateringEstablishments[index], isVisited: !cateringEstablishments[index].isVisited },
+			...cateringEstablishments.slice(index + 1),
+		]);
+
+		axios
+			.post('/visited', { clickedId: id })
+			.then(() => {
+				if (category === 'unvisited') {
+					getCateringEstablishments();
+				}
+			})
+			.catch(err => console.log(err));
+	};
+
 	useEffect(() => {
 		getCateringEstablishments();
 
@@ -28,11 +45,12 @@ export const CateringEstablishmentCards = () => {
 	return (
 		<Wrapper>
 			{cateringEstablishments.length ? (
-				cateringEstablishments.map(cateringEstablishment => (
+				cateringEstablishments.map((cateringEstablishment, index) => (
 					<CateringEstablishmentCard
 						key={cateringEstablishment.id}
 						cateringEstablishment={cateringEstablishment}
-						getCateringEstablishments={getCateringEstablishments}
+						index={index}
+						markAsVisited={markAsVisited}
 					/>
 				))
 			) : (
