@@ -33,7 +33,24 @@ export const CateringEstablishmentCards = () => {
 					getCateringEstablishments();
 				}
 			})
-			.catch(err => console.log(err));
+			.catch(error => console.log(error));
+	};
+
+	const addToFavourites = (index: number, id: string) => {
+		setCateringEstablishments([
+			...cateringEstablishments.slice(0, index),
+			{ ...cateringEstablishments[index], isFavourite: !cateringEstablishments[index].isFavourite },
+			...cateringEstablishments.slice(index + 1),
+		]);
+
+		axios
+			.post('/favourites', { clickedId: id })
+			.then(() => {
+				if (category === 'favourites') {
+					getCateringEstablishments();
+				}
+			})
+			.catch(error => console.log(error));
 	};
 
 	useEffect(() => {
@@ -51,6 +68,7 @@ export const CateringEstablishmentCards = () => {
 						cateringEstablishment={cateringEstablishment}
 						index={index}
 						markAsVisited={markAsVisited}
+						addToFavourites={addToFavourites}
 					/>
 				))
 			) : (

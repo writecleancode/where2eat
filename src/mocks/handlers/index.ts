@@ -3,23 +3,18 @@ import { cateringEstablishments } from 'src/data/cateringEstablishments';
 import { catetingEstablishmentsType } from 'src/types/types';
 
 let visited: string[] = JSON.parse(localStorage.getItem('visited') as string) || [];
+let favourites: string[] = JSON.parse(localStorage.getItem('visited') as string) || [];
 
 const checkUserPreferences = (cateringEstablishments: catetingEstablishmentsType[]) => {
-	// const test = cateringEstablishments.map(place => visited.includes(place.id));
-	const test = cateringEstablishments.map(place => {
+	const matchingPlaces = cateringEstablishments.map(place => {
 		return {
 			...place,
 			isVisited: visited.includes(place.id),
-			// isFavourite: favourites.includes(place.id),
+			isFavourite: favourites.includes(place.id),
 		};
 	});
 
-	// return {
-	// 	...cateringEstablishments,
-	// 	isVisited: true,
-	// };
-
-	return test
+	return matchingPlaces;
 };
 
 export const handlers = [
@@ -31,14 +26,15 @@ export const handlers = [
 				});
 
 			case 'unvisited':
-				const matchingCateringEstablishments = cateringEstablishments.filter(el => !visited.includes(el.id));
+				const unvisitedCateringEstablishments = cateringEstablishments.filter(place => !visited.includes(place.id));
 				return HttpResponse.json({
-					matchingCateringEstablishments: matchingCateringEstablishments,
+					matchingCateringEstablishments: checkUserPreferences(unvisitedCateringEstablishments),
 				});
 
 			case 'favourites':
+				const favouriteCateringEstablishments = cateringEstablishments.filter(place => favourites.includes(place.id));
 				return HttpResponse.json({
-					matchingCateringEstablishments: cateringEstablishments,
+					matchingCateringEstablishments: checkUserPreferences(favouriteCateringEstablishments),
 				});
 
 			case 'highly-rated':
@@ -53,7 +49,7 @@ export const handlers = [
 
 			default:
 				return HttpResponse.json({
-					matchingCateringEstablishments: cateringEstablishments,
+					matchingCateringEstablishments: checkUserPreferences(cateringEstablishments),
 				});
 		}
 	}),
@@ -63,6 +59,17 @@ export const handlers = [
 
 		visited.includes(clickedId) ? (visited = visited.filter(id => id !== clickedId)) : visited.push(clickedId);
 		localStorage.setItem('visited', JSON.stringify(visited));
+
+		return new HttpResponse(null, { status: 200 });
+	}),
+
+	http.post('/favourites', async ({ request }) => {
+		const { clickedId } = (await request.json()) as Record<string, string>;
+
+		favourites.includes(clickedId)
+			? (favourites = favourites.filter(id => id !== clickedId))
+			: favourites.push(clickedId);
+		localStorage.setItem('favourites', JSON.stringify(favourites));
 
 		return new HttpResponse(null, { status: 200 });
 	}),

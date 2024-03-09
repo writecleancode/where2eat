@@ -14,12 +14,14 @@ import { catetingEstablishmentsType } from 'src/types/types';
 type CateringEstablishmentCardProps = {
 	index: number;
 	markAsVisited: (index: number, id: string) => void;
+	addToFavourites: (index: number, id: string) => void;
 	cateringEstablishment: catetingEstablishmentsType;
 };
 
 export const CateringEstablishmentCard = ({
-	markAsVisited,
 	index,
+	markAsVisited,
+	addToFavourites,
 	cateringEstablishment: { id, type, name, imgURL, imgAlt, adress, distance, ratings, prices, isVisited, isFavourite },
 }: CateringEstablishmentCardProps) => {
 	return (
@@ -62,6 +64,7 @@ export const CateringEstablishmentCard = ({
 					iconTwoURL='/src/assets/icons/heart-fill.svg'
 					label='Add to favorites'
 					isActive={isFavourite}
+					onClick={() => addToFavourites(index, id)}
 				/>
 			</IconsWrapper>
 		</Wrapper>
