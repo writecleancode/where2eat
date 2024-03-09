@@ -1,14 +1,33 @@
 import { HttpResponse, http } from 'msw';
 import { cateringEstablishments } from 'src/data/cateringEstablishments';
+import { catetingEstablishmentsType } from 'src/types/types';
 
 let visited: string[] = JSON.parse(localStorage.getItem('visited') as string) || [];
+
+const checkUserPreferences = (cateringEstablishments: catetingEstablishmentsType[]) => {
+	// const test = cateringEstablishments.map(place => visited.includes(place.id));
+	const test = cateringEstablishments.map(place => {
+		return {
+			...place,
+			isVisited: visited.includes(place.id),
+			// isFavourite: favourites.includes(place.id),
+		};
+	});
+
+	// return {
+	// 	...cateringEstablishments,
+	// 	isVisited: true,
+	// };
+
+	return test
+};
 
 export const handlers = [
 	http.get('/:category', ({ params }) => {
 		switch (params.category) {
 			case 'all':
 				return HttpResponse.json({
-					matchingCateringEstablishments: cateringEstablishments,
+					matchingCateringEstablishments: checkUserPreferences(cateringEstablishments),
 				});
 
 			case 'unvisited':

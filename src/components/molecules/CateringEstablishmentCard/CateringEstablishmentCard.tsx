@@ -69,8 +69,8 @@ export const CateringEstablishmentCard = ({
 					iconURL='/src/assets/icons/check.svg'
 					iconTwoURL='/src/assets/icons/check-fill.svg'
 					label='Mark as visited'
-					onClick={() => markAsVisited(id)}
 					isActive={isVisited}
+					onClick={() => markAsVisited(id)}
 				/>
 				<IconButton
 					iconURL='/src/assets/icons/heart.svg'
