@@ -11,6 +11,8 @@ import {
 } from './CateringEstablishmentCard.styles';
 import { catetingEstablishmentsType } from 'src/types/types';
 
+const currentDay = new Date().getDay();
+
 type CateringEstablishmentCardProps = {
 	index: number;
 	markAsVisited: (index: number, id: string) => void;
@@ -22,7 +24,20 @@ export const CateringEstablishmentCard = ({
 	index,
 	markAsVisited,
 	addToFavourites,
-	cateringEstablishment: { id, type, name, imgURL, imgAlt, adress, distance, ratings, prices, isVisited, isFavourite },
+	cateringEstablishment: {
+		id,
+		type,
+		name,
+		imgURL,
+		imgAlt,
+		adress,
+		distance,
+		ratings,
+		prices,
+		openHours,
+		isVisited,
+		isFavourite,
+	},
 }: CateringEstablishmentCardProps) => {
 	return (
 		<Wrapper>
@@ -46,7 +61,7 @@ export const CateringEstablishmentCard = ({
 					<InfoDesciption>Prices</InfoDesciption>
 				</InfoRow>
 				<InfoRow>
-					<Info>16:00 - 22:00</Info>
+					<Info>{openHours[currentDay]}</Info>
 					<InfoDesciption>Today</InfoDesciption>
 				</InfoRow>
 			</InfoWrapper>
