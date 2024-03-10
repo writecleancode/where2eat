@@ -38,8 +38,9 @@ export const handlers = [
 				});
 
 			case 'highly-rated':
+				const highlyRatedCateringEstablishments = cateringEstablishments.filter(place => Number(place.ratings) >= 4.8);
 				return HttpResponse.json({
-					matchingCateringEstablishments: cateringEstablishments,
+					matchingCateringEstablishments: checkUserPreferences(highlyRatedCateringEstablishments),
 				});
 
 			case 'currenly-open':
