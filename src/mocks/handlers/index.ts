@@ -43,9 +43,30 @@ export const handlers = [
 					matchingCateringEstablishments: checkUserPreferences(highlyRatedCateringEstablishments),
 				});
 
-			case 'currenly-open':
+			case 'currently-open':
+				const currentDay = new Date().getDay();
+				const currentTime = new Date().toLocaleTimeString('pl-PL').slice(0, -3);
+
+				const currentlyOpenCateringEstablishments = cateringEstablishments.filter(place => {
+					if (place.openHours[currentDay].closingAt > place.openHours[currentDay].openingAt) {
+						return (
+							currentTime >= place.openHours[currentDay].openingAt &&
+							currentTime < place.openHours[currentDay].closingAt
+						);
+					} else if (place.openHours[currentDay].closingAt < place.openHours[currentDay].openingAt) {
+						return (
+							currentTime >= place.openHours[currentDay].openingAt ||
+							currentTime < place.openHours[currentDay].closingAt
+						);
+					} else if (place.openHours[currentDay].closingAt === place.openHours[currentDay].openingAt) {
+						return true;
+					} else {
+						return false;
+					}
+				});
+
 				return HttpResponse.json({
-					matchingCateringEstablishments: cateringEstablishments,
+					matchingCateringEstablishments: checkUserPreferences(currentlyOpenCateringEstablishments),
 				});
 
 			default:

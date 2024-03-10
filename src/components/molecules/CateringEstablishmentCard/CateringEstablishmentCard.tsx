@@ -61,7 +61,7 @@ export const CateringEstablishmentCard = ({
 					<InfoDesciption>Prices</InfoDesciption>
 				</InfoRow>
 				<InfoRow>
-					<Info>{openHours[currentDay]}</Info>
+					<Info>{`${openHours[currentDay].openingAt} - ${openHours[currentDay].closingAt}`}</Info>
 					<InfoDesciption>Today</InfoDesciption>
 				</InfoRow>
 			</InfoWrapper>
