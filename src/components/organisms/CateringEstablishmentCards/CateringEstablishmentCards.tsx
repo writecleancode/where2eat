@@ -1,11 +1,12 @@
 import { useContext, useEffect, useState } from 'react';
 import { CategoryContext } from 'src/providers/CategoryProvider';
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { CateringEstablishmentCard } from 'src/components/molecules/CateringEstablishmentCard/CateringEstablishmentCard';
 import { LoadingGif } from 'src/components/atoms/LoadingGif/LoadingGif';
 import { catetingEstablishmentsType } from 'src/types/types';
 import { Wrapper } from './CateringEstablishmentCards.styles';
+import { navCategories } from 'src/data/navCategories';
 
 export const CateringEstablishmentCards = () => {
 	const [cateringEstablishments, setCateringEstablishments] = useState<never[] | catetingEstablishmentsType[]>([]);
@@ -58,6 +59,8 @@ export const CateringEstablishmentCards = () => {
 
 		category && setCategory(category);
 	}, [category]);
+
+	if (!category) return <Navigate to={`/${navCategories[0].path}`} />;
 
 	return (
 		<Wrapper>
