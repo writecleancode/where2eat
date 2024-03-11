@@ -1,10 +1,7 @@
 import { useContext } from 'react';
 import { NavContext } from 'src/providers/NavProvider';
 import { HamburgerLineBottom, HamburgerLineMiddle, HamburgerLineTop, HamburgerWrapper } from './BurgerButton.styles';
-
-type BurgerButtonProps = {
-	onClick: () => void;
-};
+import { BurgerButtonProps } from 'src/types/types';
 
 export const BurgerButton = ({ ...props }: BurgerButtonProps) => {
 	const { isNavOpen } = useContext(NavContext);

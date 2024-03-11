@@ -2,6 +2,7 @@ export const cateringEstablishments = [
 	{
 		id: '1',
 		type: 'restaurant',
+		typeName: 'restaurant',
 		name: 'Atena',
 		imgURL: '/src/assets/img/atena.jpg',
 		imgAlt: 'pizza',
@@ -26,6 +27,7 @@ export const cateringEstablishments = [
 	{
 		id: '2',
 		type: 'bar',
+		typeName: 'bar',
 		name: 'Bar Ambasada',
 		imgURL: '/src/assets/img/bar_ambasada.jpg',
 		imgAlt: 'pizza',
@@ -50,6 +52,7 @@ export const cateringEstablishments = [
 	{
 		id: '3',
 		type: 'pizzeria',
+		typeName: 'pizzeria',
 		name: 'Da Grasso',
 		imgURL: '/src/assets/img/da_grasso.jpg',
 		imgAlt: 'pizza',
@@ -74,6 +77,7 @@ export const cateringEstablishments = [
 	{
 		id: '4',
 		type: 'fast food',
+		typeName: 'fast-food',
 		name: 'Durum Kebab',
 		imgURL: '/src/assets/img/durum_kebab.jpg',
 		imgAlt: 'pizza',
@@ -98,6 +102,7 @@ export const cateringEstablishments = [
 	{
 		id: '5',
 		type: 'restaurant',
+		typeName: 'restaurant',
 		name: 'Fratelli',
 		imgURL: '/src/assets/img/fratelli.jpg',
 		imgAlt: 'pizza',
@@ -122,6 +127,7 @@ export const cateringEstablishments = [
 	{
 		id: '6',
 		type: 'oriental cuisine',
+		typeName: 'oriental-cuisine',
 		name: 'Ikeda Sushi',
 		imgURL: '/src/assets/img/ikeda_sushi.jpg',
 		imgAlt: 'pizza',
@@ -146,6 +152,7 @@ export const cateringEstablishments = [
 	{
 		id: '7',
 		type: 'fast food',
+		typeName: 'fast-food',
 		name: 'KFC',
 		imgURL: '/src/assets/img/kfc.jpeg',
 		imgAlt: 'pizza',
@@ -170,6 +177,7 @@ export const cateringEstablishments = [
 	{
 		id: '8',
 		type: 'oriental cuisine',
+		typeName: 'oriental-cuisine',
 		name: 'KIM PHO',
 		imgURL: '/src/assets/img/kim_pho.jpg',
 		imgAlt: 'pizza',
@@ -194,6 +202,7 @@ export const cateringEstablishments = [
 	{
 		id: '9',
 		type: 'restaurant',
+		typeName: 'restaurant',
 		name: 'Manuka',
 		imgURL: '/src/assets/img/manuka.jpg',
 		imgAlt: 'pizza',
@@ -218,6 +227,7 @@ export const cateringEstablishments = [
 	{
 		id: '10',
 		type: 'fast food',
+		typeName: 'fast-food',
 		name: "McDonald's",
 		imgURL: '/src/assets/img/mcdonalds.jpg',
 		imgAlt: 'pizza',
@@ -242,6 +252,7 @@ export const cateringEstablishments = [
 	{
 		id: '11',
 		type: 'pizzeria',
+		typeName: 'pizzeria',
 		name: 'O Sole Mio',
 		imgURL: '/src/assets/img/o_sole_mio.jpg',
 		imgAlt: 'pizza',
@@ -266,6 +277,7 @@ export const cateringEstablishments = [
 	{
 		id: '12',
 		type: 'pizzeria',
+		typeName: 'pizzeria',
 		name: 'Vino Rosso',
 		imgURL: '/src/assets/img/vino_rosso.jpg',
 		imgAlt: 'pizza',
@@ -290,6 +302,7 @@ export const cateringEstablishments = [
 	{
 		id: '13',
 		type: 'bar',
+		typeName: 'bar',
 		name: 'Viva',
 		imgURL: '/src/assets/img/viva.jpg',
 		imgAlt: 'pizza',

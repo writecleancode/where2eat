@@ -1,6 +1,7 @@
 export type catetingEstablishmentsType = {
 	id: string;
 	type: string;
+	typeName: string;
 	name: string;
 	imgURL: string;
 	imgAlt: string;
@@ -13,4 +14,8 @@ export type catetingEstablishmentsType = {
 	openHours: { openingAt: string; closingAt: string }[];
 	isVisited: boolean;
 	isFavourite: boolean;
+};
+
+export type BurgerButtonProps = {
+	onClick: () => void;
 };
