@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { StyledPlaceName } from 'src/components/atoms/StyledPlaceName/StyledPlaceName';
 
 export const Wrapper = styled.div`
 	display: flex;
@@ -25,13 +26,7 @@ export const Wrapper = styled.div`
 	}
 `;
 
-export const Title = styled.p`
-	padding: 0.4rem;
-	background-color: #555555;
-	color: #fff;
-	font-weight: bold;
-	text-align: center;
-
+export const Title = styled(StyledPlaceName)`
 	@media (min-width: 400px) {
 		grid-row: 1 / 2;
 		grid-column: 1 / 3;
@@ -40,15 +35,11 @@ export const Title = styled.p`
 	@media (min-width: 640px) {
 		grid-row: 1 / 2;
 		grid-column: 2 / 4;
-		padding-left: 0.8rem;
-		padding-right: 0.8rem;
 		text-align: left;
 	}
 
 	@media (min-width: 680px) {
 		font-size: 1.8rem;
-		padding-left: 1.6rem;
-		padding-right: 1.6rem;
 	}
 `;
 

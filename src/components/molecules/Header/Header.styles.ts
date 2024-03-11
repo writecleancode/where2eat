@@ -4,7 +4,7 @@ export const Wrapper = styled.div`
 	position: relative;
 	position: sticky;
 	top: 0;
-	z-index: 9999;
+	z-index: 99;
 
 	@media (min-width: 1020px) {
 		grid-column: 1 / 3;

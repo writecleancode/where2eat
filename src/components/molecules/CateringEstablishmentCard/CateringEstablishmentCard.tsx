@@ -15,6 +15,7 @@ const currentDay = new Date().getDay();
 
 type CateringEstablishmentCardProps = {
 	index: number;
+	handleOpenModal: (placeId: string) => void;
 	markAsVisited: (index: number, id: string) => void;
 	addToFavourites: (index: number, id: string) => void;
 	cateringEstablishment: catetingEstablishmentsType;
@@ -22,6 +23,7 @@ type CateringEstablishmentCardProps = {
 
 export const CateringEstablishmentCard = ({
 	index,
+	handleOpenModal,
 	markAsVisited,
 	addToFavourites,
 	cateringEstablishment: {
@@ -66,7 +68,11 @@ export const CateringEstablishmentCard = ({
 				</InfoRow>
 			</InfoWrapper>
 			<IconsWrapper>
-				<IconButton iconURL='/src/assets/icons/info.svg' label='Show more details' />
+				<IconButton
+					iconURL='/src/assets/icons/info.svg'
+					label='Show more details'
+					onClick={() => handleOpenModal(id)}
+				/>
 				<IconButton
 					iconURL='/src/assets/icons/check.svg'
 					iconTwoURL='/src/assets/icons/check-fill.svg'

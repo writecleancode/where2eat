@@ -2,16 +2,20 @@ import { useContext, useEffect, useState } from 'react';
 import { CategoryContext } from 'src/providers/CategoryProvider';
 import { TypeContext } from 'src/providers/TypeProvider';
 import { Navigate, useParams } from 'react-router-dom';
-import axios from 'axios';
-import { CateringEstablishmentCard } from 'src/components/molecules/CateringEstablishmentCard/CateringEstablishmentCard';
-import { LoadingGif } from 'src/components/atoms/LoadingGif/LoadingGif';
 import { catetingEstablishmentsType } from 'src/types/types';
-import { Wrapper } from './CateringEstablishmentCards.styles';
 import { navCategories } from 'src/data/navCategories';
 import { cateringEstabilishmentsTypes } from 'src/data/cateringEstabilishmentsTypes';
+import axios from 'axios';
+import { CateringEstablishmentCard } from 'src/components/molecules/CateringEstablishmentCard/CateringEstablishmentCard';
+import { Modal } from '../Modal/Modal';
+import { CateringEstablishmentDetails } from 'src/components/molecules/CateringEstablishmentDetails/CateringEstablishmentDetails';
+import { LoadingGif } from 'src/components/atoms/LoadingGif/LoadingGif';
+import { Wrapper } from './CateringEstablishmentCards.styles';
 
 export const CateringEstablishmentCards = () => {
 	const [cateringEstablishments, setCateringEstablishments] = useState<never[] | catetingEstablishmentsType[]>([]);
+	const [currentPlace, setCurrentPlace] = useState<catetingEstablishmentsType>(cateringEstablishments[0]);
+	const [isModalOpen, setModalState] = useState(false);
 	const { category, type } = useParams();
 	const { setCategory } = useContext(CategoryContext);
 	const { setType } = useContext(TypeContext);
@@ -22,6 +26,14 @@ export const CateringEstablishmentCards = () => {
 			.then(({ data }) => setCateringEstablishments(data.matchingCateringEstablishments))
 			.catch(error => console.log(error));
 	};
+
+	const handleOpenModal = (placeId: string) => {
+		const matchingPlace = cateringEstablishments.find(place => place.id === placeId);
+		matchingPlace && setCurrentPlace(matchingPlace);
+		setModalState(true);
+	};
+
+	const handleCloseModal = () => setModalState(false);
 
 	const markAsVisited = (index: number, id: string) => {
 		setCateringEstablishments([
@@ -71,15 +83,21 @@ export const CateringEstablishmentCards = () => {
 	return (
 		<Wrapper>
 			{cateringEstablishments.length ? (
-				cateringEstablishments.map((cateringEstablishment, index) => (
-					<CateringEstablishmentCard
-						key={cateringEstablishment.id}
-						cateringEstablishment={cateringEstablishment}
-						index={index}
-						markAsVisited={markAsVisited}
-						addToFavourites={addToFavourites}
-					/>
-				))
+				<>
+					{cateringEstablishments.map((cateringEstablishment, index) => (
+						<CateringEstablishmentCard
+							key={cateringEstablishment.id}
+							cateringEstablishment={cateringEstablishment}
+							index={index}
+							handleOpenModal={handleOpenModal}
+							markAsVisited={markAsVisited}
+							addToFavourites={addToFavourites}
+						/>
+					))}
+					<Modal isModalOpen={isModalOpen}>
+						<CateringEstablishmentDetails cateringEstablishment={currentPlace} handleCloseModal={handleCloseModal} />
+					</Modal>
+				</>
 			) : (
 				<LoadingGif />
 			)}

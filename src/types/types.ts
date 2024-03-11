@@ -11,7 +11,7 @@ export type catetingEstablishmentsType = {
 	ratings: string;
 	prices: string;
 	phoneNumber: string;
-	openHours: { openingAt: string; closingAt: string }[];
+	openHours: { openingAt: string; closingAt: string; dayOfWeek: string }[];
 	isVisited: boolean;
 	isFavourite: boolean;
 };
