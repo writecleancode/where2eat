@@ -32,6 +32,7 @@ export const ListAndImgWrapper = styled.div`
 
 export const StyledPicture = styled.img`
 	width: 100%;
+	max-width: 260px;
 `;
 
 export const ContactWrapper = styled.div`
