@@ -26,7 +26,7 @@ export const StyledPicture = styled.img`
 
 	@media (min-width: 600px) {
 		width: auto;
-		max-width: 293px;
+		max-width: 286px;
 	}
 `;
 
@@ -68,6 +68,7 @@ export const ContactWrapper = styled.div`
 		flex-direction: row;
 		justify-content: space-between;
 		gap: 2.4rem;
+		padding: 0;
 	}
 `;
 
