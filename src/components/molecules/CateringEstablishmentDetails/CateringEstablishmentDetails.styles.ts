@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Wrapper = styled.div`
 	display: flex;
@@ -46,4 +46,9 @@ export const CloseButton = styled.button`
 	border: none;
 	border-radius: 8px;
 	background-color: ${({ theme }) => theme.colors.primary};
+	transition: opacity 0.3s;
+
+	&:hover {
+		opacity: 0.7;
+	}
 `;

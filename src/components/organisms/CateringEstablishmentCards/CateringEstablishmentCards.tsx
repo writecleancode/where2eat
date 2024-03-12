@@ -94,7 +94,7 @@ export const CateringEstablishmentCards = () => {
 							addToFavourites={addToFavourites}
 						/>
 					))}
-					<Modal isModalOpen={isModalOpen}>
+					<Modal isModalOpen={isModalOpen} handleCloseModal={handleCloseModal}>
 						<CateringEstablishmentDetails cateringEstablishment={currentPlace} handleCloseModal={handleCloseModal} />
 					</Modal>
 				</>

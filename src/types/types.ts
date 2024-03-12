@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
 export type catetingEstablishmentsType = {
 	id: string;
@@ -49,6 +49,7 @@ export type NavLinksFiltersProps = {
 
 export type ModalProps = {
 	isModalOpen: boolean;
+	handleCloseModal: () => void;
 	children: ReactNode;
 };
 
