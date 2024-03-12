@@ -3,7 +3,7 @@ import { cateringEstablishments } from 'src/data/cateringEstablishments';
 import { catetingEstablishmentsType } from 'src/types/types';
 
 let visited: string[] = JSON.parse(localStorage.getItem('visited') as string) || [];
-let favourites: string[] = JSON.parse(localStorage.getItem('visited') as string) || [];
+let favourites: string[] = JSON.parse(localStorage.getItem('favourites') as string) || [];
 
 const checkUserPreferences = (cateringEstablishments: catetingEstablishmentsType[], type = 'any') => {
 	const matchingPlaces = cateringEstablishments.map(place => {
