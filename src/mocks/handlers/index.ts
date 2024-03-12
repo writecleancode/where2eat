@@ -21,41 +21,29 @@ const checkUserPreferences = (cateringEstablishments: catetingEstablishmentsType
 };
 
 export const handlers = [
-	http.get('/:category/:type', ({ params }) => {
+	http.get('/:category/:type', ({ params }: { params: Record<string, string> }) => {
 		switch (params.category) {
 			case 'all':
 				return HttpResponse.json({
-					matchingCateringEstablishments: checkUserPreferences(
-						cateringEstablishments,
-						params.type as string | undefined
-					),
+					matchingCateringEstablishments: checkUserPreferences(cateringEstablishments, params.type),
 				});
 
 			case 'unvisited':
 				const unvisitedCateringEstablishments = cateringEstablishments.filter(place => !visited.includes(place.id));
 				return HttpResponse.json({
-					matchingCateringEstablishments: checkUserPreferences(
-						unvisitedCateringEstablishments,
-						params.type as string | undefined
-					),
+					matchingCateringEstablishments: checkUserPreferences(unvisitedCateringEstablishments, params.type),
 				});
 
 			case 'favourites':
 				const favouriteCateringEstablishments = cateringEstablishments.filter(place => favourites.includes(place.id));
 				return HttpResponse.json({
-					matchingCateringEstablishments: checkUserPreferences(
-						favouriteCateringEstablishments,
-						params.type as string | undefined
-					),
+					matchingCateringEstablishments: checkUserPreferences(favouriteCateringEstablishments, params.type),
 				});
 
 			case 'highly-rated':
 				const highlyRatedCateringEstablishments = cateringEstablishments.filter(place => Number(place.ratings) >= 4.8);
 				return HttpResponse.json({
-					matchingCateringEstablishments: checkUserPreferences(
-						highlyRatedCateringEstablishments,
-						params.type as string | undefined
-					),
+					matchingCateringEstablishments: checkUserPreferences(highlyRatedCateringEstablishments, params.type),
 				});
 
 			case 'currently-open':
@@ -93,6 +81,78 @@ export const handlers = [
 				});
 		}
 	}),
+
+	http.post(
+		'/:category/:type',
+		async ({ request, params }: { request: Record<string, any>; params: Record<string, any> }) => {
+			const { searchPhrase } = await request.json();
+
+			switch (params.category) {
+				case 'all':
+					const matchingCateringEstablishments = checkUserPreferences(cateringEstablishments, params.type);
+					const searchResults = matchingCateringEstablishments.filter(place =>
+						place.name.toLowerCase().includes(searchPhrase.toLowerCase())
+					);
+					return HttpResponse.json({
+						matchingCateringEstablishments: searchResults,
+					});
+
+				case 'unvisited':
+					const unvisitedCateringEstablishments = cateringEstablishments.filter(place => !visited.includes(place.id));
+					return HttpResponse.json({
+						matchingCateringEstablishments: checkUserPreferences(unvisitedCateringEstablishments, params.type),
+					});
+
+				case 'favourites':
+					const favouriteCateringEstablishments = cateringEstablishments.filter(place => favourites.includes(place.id));
+					return HttpResponse.json({
+						matchingCateringEstablishments: checkUserPreferences(favouriteCateringEstablishments, params.type),
+					});
+
+				case 'highly-rated':
+					const highlyRatedCateringEstablishments = cateringEstablishments.filter(
+						place => Number(place.ratings) >= 4.8
+					);
+					return HttpResponse.json({
+						matchingCateringEstablishments: checkUserPreferences(highlyRatedCateringEstablishments, params.type),
+					});
+
+				case 'currently-open':
+					const currentDay = new Date().getDay();
+					const currentTime = new Date().toLocaleTimeString('pl-PL').slice(0, -3);
+
+					const currentlyOpenCateringEstablishments = cateringEstablishments.filter(place => {
+						if (place.openHours[currentDay].closingAt > place.openHours[currentDay].openingAt) {
+							return (
+								currentTime >= place.openHours[currentDay].openingAt &&
+								currentTime < place.openHours[currentDay].closingAt
+							);
+						} else if (place.openHours[currentDay].closingAt < place.openHours[currentDay].openingAt) {
+							return (
+								currentTime >= place.openHours[currentDay].openingAt ||
+								currentTime < place.openHours[currentDay].closingAt
+							);
+						} else if (place.openHours[currentDay].closingAt === place.openHours[currentDay].openingAt) {
+							return true;
+						} else {
+							return false;
+						}
+					});
+
+					return HttpResponse.json({
+						matchingCateringEstablishments: checkUserPreferences(
+							currentlyOpenCateringEstablishments,
+							params.type as string | undefined
+						),
+					});
+
+				default:
+					return HttpResponse.json({
+						matchingCateringEstablishments: checkUserPreferences(cateringEstablishments),
+					});
+			}
+		}
+	),
 
 	http.post('/visited', async ({ request }) => {
 		const { clickedId } = (await request.json()) as Record<string, string>;

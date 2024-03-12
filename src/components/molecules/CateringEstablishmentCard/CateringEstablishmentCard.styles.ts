@@ -37,10 +37,6 @@ export const Title = styled(StyledPlaceName)`
 		grid-column: 2 / 4;
 		text-align: left;
 	}
-
-	@media (min-width: 680px) {
-		font-size: 1.8rem;
-	}
 `;
 
 export const Picture = styled.img`

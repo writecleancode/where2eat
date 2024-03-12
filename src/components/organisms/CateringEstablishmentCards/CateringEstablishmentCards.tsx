@@ -11,9 +11,11 @@ import { CateringEstablishmentDetails } from 'src/components/molecules/CateringE
 import { LoadingGif } from 'src/components/atoms/LoadingGif/LoadingGif';
 import { Wrapper } from './CateringEstablishmentCards.styles';
 import { catetingEstablishmentsType } from 'src/types/types';
+import { CateringEstablishmentsContext } from 'src/providers/CateringEstablishmentsProvider';
 
 export const CateringEstablishmentCards = () => {
-	const [cateringEstablishments, setCateringEstablishments] = useState<never[] | catetingEstablishmentsType[]>([]);
+	// const [cateringEstablishments, setCateringEstablishments] = useState<never[] | catetingEstablishmentsType[]>([]);
+	const {cateringEstablishments, setCateringEstablishments} = useContext(CateringEstablishmentsContext);
 	const [currentPlace, setCurrentPlace] = useState<catetingEstablishmentsType>(cateringEstablishments[0]);
 	const [isModalOpen, setModalState] = useState(false);
 	const { category, type } = useParams();
