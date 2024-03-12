@@ -1,5 +1,5 @@
 import { StyledPlaceName } from 'src/components/atoms/StyledPlaceName/StyledPlaceName';
-import { catetingEstablishmentsType } from 'src/types/types';
+import { CateringEstablishmentDetailsProps } from 'src/types/types';
 import {
 	CloseButton,
 	ContactWrapper,
@@ -9,11 +9,6 @@ import {
 	StyledPicture,
 	Wrapper,
 } from './CateringEstablishmentDetails.styles';
-
-type CateringEstablishmentDetailsProps = {
-	handleCloseModal: () => void;
-	cateringEstablishment: catetingEstablishmentsType;
-};
 
 export const CateringEstablishmentDetails = ({
 	handleCloseModal,
@@ -39,7 +34,7 @@ export const CateringEstablishmentDetails = ({
 				<p>{adressLong}</p>
 				<p>{phoneNumber}</p>
 			</ContactWrapper>
-			<CloseButton onClick={handleCloseModal} aria-label='close modal'>
+			<CloseButton onClick={handleCloseModal} aria-label='close modal' type='button'>
 				<img src='/src/assets/icons/x-mark.svg' alt='' />
 			</CloseButton>
 		</Wrapper>

@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from 'react';
 import { CategoryContext } from 'src/providers/CategoryProvider';
 import { TypeContext } from 'src/providers/TypeProvider';
 import { Navigate, useParams } from 'react-router-dom';
-import { catetingEstablishmentsType } from 'src/types/types';
 import { navCategories } from 'src/data/navCategories';
 import { cateringEstabilishmentsTypes } from 'src/data/cateringEstabilishmentsTypes';
 import axios from 'axios';
@@ -11,6 +10,7 @@ import { Modal } from '../Modal/Modal';
 import { CateringEstablishmentDetails } from 'src/components/molecules/CateringEstablishmentDetails/CateringEstablishmentDetails';
 import { LoadingGif } from 'src/components/atoms/LoadingGif/LoadingGif';
 import { Wrapper } from './CateringEstablishmentCards.styles';
+import { catetingEstablishmentsType } from 'src/types/types';
 
 export const CateringEstablishmentCards = () => {
 	const [cateringEstablishments, setCateringEstablishments] = useState<never[] | catetingEstablishmentsType[]>([]);

@@ -1,17 +1,13 @@
-import { ReactNode } from 'react';
 import { Header } from 'src/components/molecules/Header/Header';
 import { NavDeskopColumn } from 'src/components/molecules/NavDesktopColumn/NavDesktopColumn';
 import { NavLinksFilters } from 'src/components/molecules/NavLinksFilters/NavLinksFilters';
 import { NavLinks } from 'src/components/molecules/NavLinks/NavLinks';
-import { ContentWrapper, Wrapper } from './MainTemplate.styles';
-
-type MainTemplateProps = {
-	children?: ReactNode;
-};
+import { ContentWrapper } from './MainTemplate.styles';
+import { MainTemplateProps } from 'src/types/types';
 
 export const MainTemplate = ({ children }: MainTemplateProps) => {
 	return (
-		<Wrapper>
+		<div>
 			<Header />
 			<ContentWrapper>
 				<NavDeskopColumn>
@@ -23,6 +19,6 @@ export const MainTemplate = ({ children }: MainTemplateProps) => {
 					<NavLinksFilters />
 				</NavDeskopColumn>
 			</ContentWrapper>
-		</Wrapper>
+		</div>
 	);
 };

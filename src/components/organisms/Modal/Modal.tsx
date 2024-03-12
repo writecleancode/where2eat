@@ -1,10 +1,5 @@
-import { ReactNode } from 'react';
 import { Wrapper } from './Modal.styles';
-
-type ModalProps = {
-	isModalOpen: boolean;
-	children: ReactNode;
-};
+import { ModalProps } from 'src/types/types';
 
 export const Modal = ({ isModalOpen, children }: ModalProps) => {
 	return (

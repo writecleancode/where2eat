@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-export const Wrapper = styled.div``;
-
 export const ContentWrapper = styled.div`
 	max-width: calc(1400px + 3.2rem);
 	margin-left: auto;

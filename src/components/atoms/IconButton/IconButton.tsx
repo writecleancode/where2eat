@@ -1,12 +1,5 @@
+import { IconButtonProps } from 'src/types/types';
 import { Icon, IconTwo, Wrapper } from './IconButton.styles';
-
-type IconButtonProps = {
-	iconURL: string;
-	iconTwoURL?: string;
-	label: string;
-	isActive?: boolean;
-	onClick?: () => void;
-};
 
 export const IconButton = ({ iconURL, iconTwoURL, label, isActive, ...props }: IconButtonProps) => {
 	return (

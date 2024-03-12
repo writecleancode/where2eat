@@ -6,10 +6,7 @@ import { cateringEstabilishmentsTypes } from 'src/data/cateringEstabilishmentsTy
 import { NavButtonsWrapper } from 'src/components/atoms/NavButtonsWrapper/NavButtonsWrapper';
 import { StyledNavLink } from 'src/components/atoms/StyledLink/StyledNavButton';
 import { SeparatingLine } from './NavLinksFilters.styles';
-
-type NavLinksFiltersProps = {
-	$isDesktop?: boolean;
-};
+import { NavLinksFiltersProps } from 'src/types/types';
 
 export const NavLinksFilters = ({ $isDesktop }: NavLinksFiltersProps) => {
 	const { closeNav } = useContext(NavContext);

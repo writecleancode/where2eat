@@ -9,17 +9,9 @@ import {
 	Title,
 	Wrapper,
 } from './CateringEstablishmentCard.styles';
-import { catetingEstablishmentsType } from 'src/types/types';
+import { CateringEstablishmentCardProps } from 'src/types/types';
 
 const currentDay = new Date().getDay();
-
-type CateringEstablishmentCardProps = {
-	index: number;
-	handleOpenModal: (placeId: string) => void;
-	markAsVisited: (index: number, id: string) => void;
-	addToFavourites: (index: number, id: string) => void;
-	cateringEstablishment: catetingEstablishmentsType;
-};
 
 export const CateringEstablishmentCard = ({
 	index,
