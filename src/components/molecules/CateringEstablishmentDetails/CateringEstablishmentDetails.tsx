@@ -3,6 +3,7 @@ import { CateringEstablishmentDetailsProps } from 'src/types/types';
 import {
 	CloseButton,
 	ContactWrapper,
+	DayOfWeek,
 	ListAndImgWrapper,
 	StyledList,
 	StyledListItem,
@@ -25,7 +26,7 @@ export const CateringEstablishmentDetails = ({
 							<p>
 								{openingAt} - {closingAt}
 							</p>
-							<p>{dayOfWeek}</p>
+							<DayOfWeek>{dayOfWeek}</DayOfWeek>
 						</StyledListItem>
 					))}
 				</StyledList>

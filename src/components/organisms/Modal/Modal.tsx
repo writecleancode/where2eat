@@ -7,7 +7,7 @@ export const Modal = ({ isModalOpen, handleCloseModal, children }: ModalProps) =
 			isOpen={isModalOpen}
 			onRequestClose={handleCloseModal}
 			style={{
-				overlay: { zIndex: '2' },
+				overlay: { zIndex: '2', overflowY: 'scroll' },
 			}}
 			appElement={document.getElementById('root')!}>
 			{children}
