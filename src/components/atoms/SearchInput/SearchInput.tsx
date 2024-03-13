@@ -2,8 +2,8 @@ import { FormEvent, useContext, useEffect, useState } from 'react';
 import { CategoryContext } from 'src/providers/CategoryProvider';
 import { TypeContext } from 'src/providers/TypeProvider';
 import { CateringEstablishmentsContext } from 'src/providers/CateringEstablishmentsProvider';
-import { StyledIcon, StyledInput, Wrapper } from './SearchInput.styles';
 import axios from 'axios';
+import { StyledIcon, StyledInput, Wrapper } from './SearchInput.styles';
 
 export const SearchInput = () => {
 	const [inputValue, setInputValue] = useState('');

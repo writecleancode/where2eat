@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
-export const GlobalStyle = createGlobalStyle<{ $isNavOpen: boolean }>`
+export const GlobalStyle = createGlobalStyle`
 *,
 *::before,
 *::after {
@@ -21,7 +21,6 @@ body {
     font-size: 1.6rem;
     line-height: 1.5;
 	overflow-x: hidden;
-    overflow-y: ${({ $isNavOpen }) => ($isNavOpen ? 'hidden' : 'auto')};
 }
 
 img {

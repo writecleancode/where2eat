@@ -8,14 +8,13 @@ export const Wrapper = styled.div<{ $isActive: boolean }>`
 	width: 100%;
 	background-color: #f2f2f2;
 	background-color: #fff;
+	max-height: calc(100vh - 51px);
 	box-shadow: 0 0 8px 1px rgba(0, 0, 0, 0.3);
 	clip-path: ${({ $isActive }) =>
 		$isActive ? 'polygon(0 0, 100% 0%, 100% 103%, 0% 103%)' : 'polygon(0 0, 100% 0%, 100% 0%, 0 0%)'};
+	overflow-y: scroll;
 	pointer-events: ${({ $isActive }) => ($isActive ? 'auto' : 'none')};
 	transition: clip-path 0.4s;
-
-	overflow: scroll;
-	max-height: calc(100vh - 51px);
 
 	@media (min-width: 600px) {
 		display: grid;

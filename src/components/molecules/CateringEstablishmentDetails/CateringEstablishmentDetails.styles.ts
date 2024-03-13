@@ -23,6 +23,7 @@ export const ListAndImgWrapper = styled.div`
 
 export const StyledPicture = styled.img`
 	width: 100%;
+	max-width: 286px;
 
 	@media (min-width: 600px) {
 		width: auto;
