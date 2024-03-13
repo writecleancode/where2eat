@@ -9,14 +9,14 @@ export const SearchInput = () => {
 	const [inputValue, setInputValue] = useState('');
 	const { currentCategory } = useContext(CategoryContext);
 	const { currentType } = useContext(TypeContext);
-	const { setCateringEstablishments } = useContext(CateringEstablishmentsContext);
+	const { setSortedCateringEstablishments } = useContext(CateringEstablishmentsContext);
 
 	const handleSearchInput = (e: FormEvent<HTMLInputElement>) => {
 		setInputValue(e.currentTarget.value);
 
 		axios
 			.post(`/${currentCategory}/${currentType}`, { searchPhrase: e.currentTarget.value })
-			.then(({ data }) => setCateringEstablishments(data.matchingCateringEstablishments))
+			.then(({ data }) => setSortedCateringEstablishments(data.matchingCateringEstablishments))
 			.catch(error => console.log(error));
 	};
 

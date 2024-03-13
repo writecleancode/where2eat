@@ -1,13 +1,5 @@
-import { ReactNode, createContext, useState } from 'react';
-
-type TypeContextType = {
-	currentType: string;
-	setType: (type: string) => void;
-};
-
-type TypeProviderProps = {
-	children: ReactNode;
-};
+import { createContext, useState } from 'react';
+import { TypeContextType, TypeProviderProps } from 'src/types/types';
 
 export const TypeContext = createContext<TypeContextType>({
 	currentType: '',

@@ -1,18 +1,10 @@
 export const sortOptions = [
 	{
-		text: 'A to Z',
-		value: 'byAlphabet',
-	},
-	{
-		text: 'Z to A',
-		value: 'byAlphabetReverse',
-	},
-	{
 		text: 'from the closest',
 		value: 'byDistanceFromClosest',
 	},
 	{
-		text: 'from the closest',
+		text: 'from the fartest',
 		value: 'byDistanceFromFartest',
 	},
 	{
@@ -30,5 +22,13 @@ export const sortOptions = [
 	{
 		text: 'from the most expensive',
 		value: 'byPriceFromHighest',
+	},
+	{
+		text: 'A to Z',
+		value: 'byAlphabet',
+	},
+	{
+		text: 'Z to A',
+		value: 'byAlphabetReverse',
 	},
 ];

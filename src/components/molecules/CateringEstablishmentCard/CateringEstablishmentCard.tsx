@@ -39,7 +39,7 @@ export const CateringEstablishmentCard = ({
 			<Picture src={imgURL} alt={imgAlt} />
 			<InfoWrapper>
 				<InfoRow>
-					<Info>{distance}</Info>
+					<Info>{distance} km</Info>
 					<InfoDesciption>{adress}</InfoDesciption>
 				</InfoRow>
 				<InfoRow>

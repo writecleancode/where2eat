@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { Dispatch, ReactNode, SetStateAction } from 'react';
 
 export type catetingEstablishmentsType = {
 	id: string;
@@ -55,4 +55,38 @@ export type ModalProps = {
 
 export type MainTemplateProps = {
 	children?: ReactNode;
+};
+
+export type CategoryContextType = {
+	currentCategory: string;
+	setCategory: (category: string) => void;
+};
+
+export type CategoryProviderProps = {
+	children: ReactNode;
+};
+
+export type CateringEstablishmentsContextType = {
+	cateringEstablishments: never[] | catetingEstablishmentsType[];
+	setCateringEstablishments: Dispatch<SetStateAction<never[] | catetingEstablishmentsType[]>>;
+	setSortedCateringEstablishments: (placesToSort: catetingEstablishmentsType[]) => void;
+	selectValue: string;
+	setSelectValue: Dispatch<SetStateAction<string | string>>;
+};
+
+export type CateringEstablishmentsProviderProps = {
+	children: ReactNode;
+};
+
+export type NavProviderProps = {
+	children: ReactNode;
+};
+
+export type TypeContextType = {
+	currentType: string;
+	setType: (type: string) => void;
+};
+
+export type TypeProviderProps = {
+	children: ReactNode;
 };

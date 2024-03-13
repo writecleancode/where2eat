@@ -1,8 +1,5 @@
-import { ReactNode, createContext, useState } from 'react';
-
-type NavProviderProps = {
-	children: ReactNode;
-};
+import { createContext, useState } from 'react';
+import { NavProviderProps } from 'src/types/types';
 
 export const NavContext = createContext({
 	isNavOpen: false,

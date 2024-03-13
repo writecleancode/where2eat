@@ -1,7 +1,8 @@
 import { useContext, useEffect, useState } from 'react';
+import { Navigate, useParams } from 'react-router-dom';
+import { CateringEstablishmentsContext } from 'src/providers/CateringEstablishmentsProvider';
 import { CategoryContext } from 'src/providers/CategoryProvider';
 import { TypeContext } from 'src/providers/TypeProvider';
-import { Navigate, useParams } from 'react-router-dom';
 import { navCategories } from 'src/data/navCategories';
 import { cateringEstabilishmentsTypes } from 'src/data/cateringEstabilishmentsTypes';
 import axios from 'axios';
@@ -11,11 +12,11 @@ import { CateringEstablishmentDetails } from 'src/components/molecules/CateringE
 import { LoadingGif } from 'src/components/atoms/LoadingGif/LoadingGif';
 import { Wrapper } from './CateringEstablishmentCards.styles';
 import { catetingEstablishmentsType } from 'src/types/types';
-import { CateringEstablishmentsContext } from 'src/providers/CateringEstablishmentsProvider';
 
 export const CateringEstablishmentCards = () => {
 	// const [cateringEstablishments, setCateringEstablishments] = useState<never[] | catetingEstablishmentsType[]>([]);
-	const {cateringEstablishments, setCateringEstablishments} = useContext(CateringEstablishmentsContext);
+	const { cateringEstablishments, setCateringEstablishments, setSortedCateringEstablishments } =
+		useContext(CateringEstablishmentsContext);
 	const [currentPlace, setCurrentPlace] = useState<catetingEstablishmentsType>(cateringEstablishments[0]);
 	const [isModalOpen, setModalState] = useState(false);
 	const { category, type } = useParams();
@@ -25,7 +26,7 @@ export const CateringEstablishmentCards = () => {
 	const getCateringEstablishments = () => {
 		axios
 			.get(`/${category}/${type}`)
-			.then(({ data }) => setCateringEstablishments(data.matchingCateringEstablishments))
+			.then(({ data }) => setSortedCateringEstablishments(data.matchingCateringEstablishments))
 			.catch(error => console.log(error));
 	};
 

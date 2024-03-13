@@ -1,13 +1,5 @@
-import { ReactNode, createContext, useState } from 'react';
-
-type CategoryContextType = {
-	currentCategory: string;
-	setCategory: (category: string) => void;
-};
-
-type CategoryProviderProps = {
-	children: ReactNode;
-};
+import { createContext, useState } from 'react';
+import { CategoryContextType, CategoryProviderProps } from 'src/types/types';
 
 export const CategoryContext = createContext<CategoryContextType>({
 	currentCategory: '',
