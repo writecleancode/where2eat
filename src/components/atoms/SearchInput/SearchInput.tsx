@@ -1,8 +1,9 @@
-import { FormEvent, useContext, useEffect, useState } from 'react';
+import { FormEvent, useCallback, useContext, useEffect, useState } from 'react';
 import { CategoryContext } from 'src/providers/CategoryProvider';
 import { TypeContext } from 'src/providers/TypeProvider';
 import { CateringEstablishmentsContext } from 'src/providers/CateringEstablishmentsProvider';
 import axios from 'axios';
+import { debounce } from 'lodash';
 import { StyledIcon, StyledInput, Wrapper } from './SearchInput.styles';
 
 export const SearchInput = () => {
@@ -11,13 +12,28 @@ export const SearchInput = () => {
 	const { currentType } = useContext(TypeContext);
 	const { setSortedCateringEstablishments } = useContext(CateringEstablishmentsContext);
 
-	const handleSearchInput = (e: FormEvent<HTMLInputElement>) => {
-		setInputValue(e.currentTarget.value);
+	const findPlaces = async (searchPhrase: string) => {
+		if (!currentCategory || !currentType) return;
 
-		axios
-			.post(`/${currentCategory}/${currentType}`, { searchPhrase: e.currentTarget.value })
-			.then(({ data }) => setSortedCateringEstablishments(data.matchingCateringEstablishments))
-			.catch(error => console.log(error));
+		try {
+			const { data } = await axios.post(`/${currentCategory}/${currentType}`, { searchPhrase: searchPhrase });
+			return data.matchingCateringEstablishments;
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const getMatchingPlaces = useCallback(
+		debounce(async (searchPhrase: string) => {
+			const matchingPlaces = await findPlaces(searchPhrase);
+			setSortedCateringEstablishments(matchingPlaces);
+		}, 500),
+		[currentCategory, currentType]
+	);
+
+	const handleSearchInput = async (e: FormEvent<HTMLInputElement>) => {
+		setInputValue(e.currentTarget.value);
+		getMatchingPlaces(e.currentTarget.value);
 	};
 
 	useEffect(() => {
