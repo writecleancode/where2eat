@@ -18,7 +18,7 @@ export const SearchInput = () => {
 			const matchingPlaces = await findPlaces(currentCategory, currentType, searchPhrase);
 			setSortedCateringEstablishments(matchingPlaces);
 		}, 500),
-		[currentCategory, currentType]
+		[currentCategory, currentType, setSortedCateringEstablishments]
 	);
 
 	const handleSearchInput = async (e: FormEvent<HTMLInputElement>) => {
