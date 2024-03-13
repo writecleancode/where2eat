@@ -1,4 +1,4 @@
-import { FormEvent, useContext, useState } from 'react';
+import { FormEvent, useContext, useEffect, useState } from 'react';
 import { CategoryContext } from 'src/providers/CategoryProvider';
 import { TypeContext } from 'src/providers/TypeProvider';
 import { CateringEstablishmentsContext } from 'src/providers/CateringEstablishmentsProvider';
@@ -19,6 +19,10 @@ export const SearchInput = () => {
 			.then(({ data }) => setCateringEstablishments(data.matchingCateringEstablishments))
 			.catch(error => console.log(error));
 	};
+
+	useEffect(() => {
+		setInputValue('');
+	}, [currentCategory, currentType]);
 
 	return (
 		<Wrapper>

@@ -20,6 +20,11 @@ const checkUserPreferences = (cateringEstablishments: catetingEstablishmentsType
 	return filteredPlaces;
 };
 
+const getMatchingPlaces = (cateringEstablishments: catetingEstablishmentsType[], searchPhrase: string) => {
+	if (!searchPhrase) return cateringEstablishments;
+	return cateringEstablishments.filter(place => place.name.toLowerCase().includes(searchPhrase.toLowerCase()));
+};
+
 export const handlers = [
 	http.get('/:category/:type', ({ params }: { params: Record<string, string> }) => {
 		switch (params.category) {
@@ -89,24 +94,29 @@ export const handlers = [
 
 			switch (params.category) {
 				case 'all':
-					const matchingCateringEstablishments = checkUserPreferences(cateringEstablishments, params.type);
-					const searchResults = matchingCateringEstablishments.filter(place =>
-						place.name.toLowerCase().includes(searchPhrase.toLowerCase())
-					);
 					return HttpResponse.json({
-						matchingCateringEstablishments: searchResults,
+						matchingCateringEstablishments: getMatchingPlaces(
+							checkUserPreferences(cateringEstablishments, params.type),
+							searchPhrase
+						),
 					});
 
 				case 'unvisited':
 					const unvisitedCateringEstablishments = cateringEstablishments.filter(place => !visited.includes(place.id));
 					return HttpResponse.json({
-						matchingCateringEstablishments: checkUserPreferences(unvisitedCateringEstablishments, params.type),
+						matchingCateringEstablishments: getMatchingPlaces(
+							checkUserPreferences(unvisitedCateringEstablishments, params.type),
+							searchPhrase
+						),
 					});
 
 				case 'favourites':
 					const favouriteCateringEstablishments = cateringEstablishments.filter(place => favourites.includes(place.id));
 					return HttpResponse.json({
-						matchingCateringEstablishments: checkUserPreferences(favouriteCateringEstablishments, params.type),
+						matchingCateringEstablishments: getMatchingPlaces(
+							checkUserPreferences(favouriteCateringEstablishments, params.type),
+							searchPhrase
+						),
 					});
 
 				case 'highly-rated':
@@ -114,7 +124,10 @@ export const handlers = [
 						place => Number(place.ratings) >= 4.8
 					);
 					return HttpResponse.json({
-						matchingCateringEstablishments: checkUserPreferences(highlyRatedCateringEstablishments, params.type),
+						matchingCateringEstablishments: getMatchingPlaces(
+							checkUserPreferences(highlyRatedCateringEstablishments, params.type),
+							searchPhrase
+						),
 					});
 
 				case 'currently-open':
@@ -140,15 +153,18 @@ export const handlers = [
 					});
 
 					return HttpResponse.json({
-						matchingCateringEstablishments: checkUserPreferences(
-							currentlyOpenCateringEstablishments,
-							params.type as string | undefined
+						matchingCateringEstablishments: getMatchingPlaces(
+							checkUserPreferences(currentlyOpenCateringEstablishments, params.type as string | undefined),
+							searchPhrase
 						),
 					});
 
 				default:
 					return HttpResponse.json({
-						matchingCateringEstablishments: checkUserPreferences(cateringEstablishments),
+						matchingCateringEstablishments: getMatchingPlaces(
+							checkUserPreferences(cateringEstablishments),
+							searchPhrase
+						),
 					});
 			}
 		}
