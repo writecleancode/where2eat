@@ -1,5 +1,6 @@
 import { HttpResponse, http } from 'msw';
 import { cateringEstablishments } from 'src/data/cateringEstablishments';
+import { sortOptions } from 'src/data/sortOptions';
 import { catetingEstablishmentsType } from 'src/types/types';
 
 let visited: string[] = JSON.parse(localStorage.getItem('visited') as string) || [];
@@ -188,5 +189,11 @@ export const handlers = [
 		localStorage.setItem('favourites', JSON.stringify(favourites));
 
 		return new HttpResponse(null, { status: 200 });
+	}),
+
+	http.get('/sort-options', () => {
+		return HttpResponse.json({
+			sortOptions,
+		});
 	}),
 ];
