@@ -15,7 +15,7 @@ export const MainTemplate = ({ children }: MainTemplateProps) => {
 					<NavLinks />
 				</NavDeskopColumn>
 				{children}
-				<NavDeskopColumn>
+				<NavDeskopColumn $isLargeScreenOnly>
 					<NavLinksFilters />
 				</NavDeskopColumn>
 			</ContentWrapper>

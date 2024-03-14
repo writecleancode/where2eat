@@ -47,6 +47,15 @@ export type NavLinksFiltersProps = {
 	$isDesktop?: boolean;
 };
 
+export type PromotionsCardProps = {
+	promotionItem: {
+		place: string;
+		imgURL: string;
+		imgAlt: string;
+		promotionsList: string[];
+	};
+};
+
 export type ModalProps = {
 	isModalOpen: boolean;
 	handleCloseModal: () => void;
