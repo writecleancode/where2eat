@@ -33,8 +33,8 @@ export type IconButtonProps = {
 export type CateringEstablishmentCardProps = {
 	index: number;
 	handleOpenModal: (placeId: string) => void;
-	markAsVisited: (index: number, id: string) => void;
-	addToFavourites: (index: number, id: string) => void;
+	handleVisitedStatus: (index: number, id: string) => void;
+	handleFavouritesStatus: (index: number, id: string) => void;
 	cateringEstablishment: catetingEstablishmentsType;
 };
 
@@ -72,6 +72,9 @@ export type CateringEstablishmentsContextType = {
 	setSortedCateringEstablishments: (placesToSort: catetingEstablishmentsType[]) => void;
 	selectValue: string;
 	setSelectValue: Dispatch<SetStateAction<string | string>>;
+	getSortedCateringEstablishments: (category: string | undefined, type: string | undefined) => Promise<void>,
+	toggleVisitedStatus: (index: number) => void,
+	toggleFavouriteStaus: (index: number) => void,
 };
 
 export type CateringEstablishmentsProviderProps = {

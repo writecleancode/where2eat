@@ -1,4 +1,5 @@
 import { createContext, useState } from 'react';
+import { usePlaces } from 'src/hooks/usePlaces';
 import { sortOptions } from 'src/data/sortOptions';
 import {
 	CateringEstablishmentsContextType,
@@ -12,11 +13,15 @@ export const CateringEstablishmentsContext = createContext<CateringEstablishment
 	setSortedCateringEstablishments: () => {},
 	selectValue: '',
 	setSelectValue: () => {},
+	getSortedCateringEstablishments: async () => {},
+	toggleVisitedStatus: () => {},
+	toggleFavouriteStaus: () => {},
 });
 
 export const CateringEstablishmentsProvider = ({ children }: CateringEstablishmentsProviderProps) => {
 	const [cateringEstablishments, setCateringEstablishments] = useState<never[] | catetingEstablishmentsType[]>([]);
 	const [selectValue, setSelectValue] = useState(sortOptions[0].value);
+	const { getCateringEstablishments } = usePlaces();
 
 	const setSortedCateringEstablishments = (placesToSort: catetingEstablishmentsType[]) => {
 		setCateringEstablishments(() => {
@@ -115,6 +120,27 @@ export const CateringEstablishmentsProvider = ({ children }: CateringEstablishme
 		});
 	};
 
+	const getSortedCateringEstablishments = async (category: string | undefined, type: string | undefined) => {
+		const data = await getCateringEstablishments(category, type);
+		setSortedCateringEstablishments(data);
+	};
+
+	const toggleVisitedStatus = (index: number) => {
+		setCateringEstablishments([
+			...cateringEstablishments.slice(0, index),
+			{ ...cateringEstablishments[index], isVisited: !cateringEstablishments[index].isVisited },
+			...cateringEstablishments.slice(index + 1),
+		]);
+	};
+
+	const toggleFavouriteStaus = (index: number) => {
+		setCateringEstablishments([
+			...cateringEstablishments.slice(0, index),
+			{ ...cateringEstablishments[index], isFavourite: !cateringEstablishments[index].isFavourite },
+			...cateringEstablishments.slice(index + 1),
+		]);
+	};
+
 	return (
 		<CateringEstablishmentsContext.Provider
 			value={{
@@ -123,6 +149,9 @@ export const CateringEstablishmentsProvider = ({ children }: CateringEstablishme
 				setSortedCateringEstablishments,
 				selectValue,
 				setSelectValue,
+				getSortedCateringEstablishments,
+				toggleVisitedStatus,
+				toggleFavouriteStaus,
 			}}>
 			{children}
 		</CateringEstablishmentsContext.Provider>

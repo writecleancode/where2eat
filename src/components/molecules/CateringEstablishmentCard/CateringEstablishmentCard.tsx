@@ -16,8 +16,8 @@ const currentDay = new Date().getDay();
 export const CateringEstablishmentCard = ({
 	index,
 	handleOpenModal,
-	markAsVisited,
-	addToFavourites,
+	handleVisitedStatus,
+	handleFavouritesStatus,
 	cateringEstablishment: {
 		id,
 		type,
@@ -70,14 +70,14 @@ export const CateringEstablishmentCard = ({
 					iconTwoURL='/src/assets/icons/check-fill.svg'
 					label='Mark as visited'
 					isActive={isVisited}
-					onClick={() => markAsVisited(index, id)}
+					onClick={() => handleVisitedStatus(index, id)}
 				/>
 				<IconButton
 					iconURL='/src/assets/icons/heart.svg'
 					iconTwoURL='/src/assets/icons/heart-fill.svg'
 					label='Add to favorites'
 					isActive={isFavourite}
-					onClick={() => addToFavourites(index, id)}
+					onClick={() => handleFavouritesStatus(index, id)}
 				/>
 			</IconsWrapper>
 		</Wrapper>

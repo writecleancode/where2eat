@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
-import { usePlaces } from 'src/hooks/usePlaces';
 import { useModal } from 'src/hooks/useModal';
 import { CateringEstablishmentsContext } from 'src/providers/CateringEstablishmentsProvider';
 import { CategoryContext } from 'src/providers/CategoryProvider';
@@ -16,18 +15,34 @@ import { Wrapper } from './CateringEstablishmentCards.styles';
 import { catetingEstablishmentsType } from 'src/types/types';
 
 export const CateringEstablishmentCards = () => {
-	const { cateringEstablishments, setCateringEstablishments, setSortedCateringEstablishments } =
+	const { cateringEstablishments, getSortedCateringEstablishments, toggleVisitedStatus, toggleFavouriteStaus } =
 		useContext(CateringEstablishmentsContext);
 	const [currentPlace, setCurrentPlace] = useState<catetingEstablishmentsType>(cateringEstablishments[0]);
 	const { category, type } = useParams();
-	const { getCateringEstablishments } = usePlaces();
 	const { isModalOpen, handleOpenModal, handleCloseModal } = useModal();
 	const { setCategory } = useContext(CategoryContext);
 	const { setType } = useContext(TypeContext);
 
-	const getSortedCateringEstablishments = async () => {
-		const data = await getCateringEstablishments(category, type);
-		setSortedCateringEstablishments(data);
+	const handleVisitedStatus = async (index: number, id: string) => {
+		toggleVisitedStatus(index);
+
+		try {
+			await axios.post('/visited', { clickedId: id });
+			if (category === 'unvisited') getSortedCateringEstablishments(category, type);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const handleFavouritesStatus = async (index: number, id: string) => {
+		toggleFavouriteStaus(index);
+
+		try {
+			await axios.post('/favourites', { clickedId: id });
+			if (category === 'favourites') getSortedCateringEstablishments(category, type);
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	const handleDisplayPlaceDetails = (placeId: string) => {
@@ -36,42 +51,8 @@ export const CateringEstablishmentCards = () => {
 		handleOpenModal();
 	};
 
-	const markAsVisited = (index: number, id: string) => {
-		setCateringEstablishments([
-			...cateringEstablishments.slice(0, index),
-			{ ...cateringEstablishments[index], isVisited: !cateringEstablishments[index].isVisited },
-			...cateringEstablishments.slice(index + 1),
-		]);
-
-		(async () => {
-			try {
-				await axios.post('/visited', { clickedId: id });
-				if (category === 'unvisited') getSortedCateringEstablishments();
-			} catch (error) {
-				console.log(error);
-			}
-		})();
-	};
-
-	const addToFavourites = (index: number, id: string) => {
-		setCateringEstablishments([
-			...cateringEstablishments.slice(0, index),
-			{ ...cateringEstablishments[index], isFavourite: !cateringEstablishments[index].isFavourite },
-			...cateringEstablishments.slice(index + 1),
-		]);
-
-		(async () => {
-			try {
-				await axios.post('/favourites', { clickedId: id });
-				if (category === 'favourites') getSortedCateringEstablishments();
-			} catch (error) {
-				console.log(error);
-			}
-		})();
-	};
-
 	useEffect(() => {
-		getSortedCateringEstablishments();
+		getSortedCateringEstablishments(category, type);
 
 		category && setCategory(category);
 		type && setType(type);
@@ -91,8 +72,8 @@ export const CateringEstablishmentCards = () => {
 							cateringEstablishment={cateringEstablishment}
 							index={index}
 							handleOpenModal={handleDisplayPlaceDetails}
-							markAsVisited={markAsVisited}
-							addToFavourites={addToFavourites}
+							handleVisitedStatus={handleVisitedStatus}
+							handleFavouritesStatus={handleFavouritesStatus}
 						/>
 					))}
 					<Modal isModalOpen={isModalOpen} handleCloseModal={handleCloseModal}>
