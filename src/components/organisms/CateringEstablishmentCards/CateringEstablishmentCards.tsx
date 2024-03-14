@@ -43,14 +43,14 @@ export const CateringEstablishmentCards = () => {
 			...cateringEstablishments.slice(index + 1),
 		]);
 
-		axios
-			.post('/visited', { clickedId: id })
-			.then(() => {
-				if (category === 'unvisited') {
-					getSortedCateringEstablishments();
-				}
-			})
-			.catch(error => console.log(error));
+		(async () => {
+			try {
+				await axios.post('/visited', { clickedId: id });
+				if (category === 'unvisited') getSortedCateringEstablishments();
+			} catch (error) {
+				console.log(error);
+			}
+		})();
 	};
 
 	const addToFavourites = (index: number, id: string) => {
@@ -60,14 +60,14 @@ export const CateringEstablishmentCards = () => {
 			...cateringEstablishments.slice(index + 1),
 		]);
 
-		axios
-			.post('/favourites', { clickedId: id })
-			.then(() => {
-				if (category === 'favourites') {
-					getSortedCateringEstablishments();
-				}
-			})
-			.catch(error => console.log(error));
+		(async () => {
+			try {
+				await axios.post('/favourites', { clickedId: id });
+				if (category === 'favourites') getSortedCateringEstablishments();
+			} catch (error) {
+				console.log(error);
+			}
+		})();
 	};
 
 	useEffect(() => {
