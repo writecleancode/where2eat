@@ -1,7 +1,12 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
-export const StyledNavLink = styled(Link)<{ $isActive: boolean; $isReversed?: boolean }>`
+export const StyledNavLink = styled(Link)<{
+	$isActive: boolean;
+	$isReversed?: boolean;
+	$isDisabled?: boolean;
+	tabIndex?: string;
+}>`
 	position: relative;
 	display: inline-block;
 	padding: 0.4rem 1.6rem;
@@ -14,6 +19,14 @@ export const StyledNavLink = styled(Link)<{ $isActive: boolean; $isReversed?: bo
 	text-align: ${({ $isReversed }) => ($isReversed ? 'right' : 'left')};
 	text-transform: uppercase;
 	transition: color 0.3s, font-weight 0.3s;
+
+	${({ $isDisabled }) =>
+		$isDisabled
+			? `
+	opacity: 0.5;
+	pointer-events: none;
+	`
+			: ''}
 
 	&::before {
 		content: '';

@@ -8,7 +8,7 @@ import { TypeProvider } from 'src/providers/TypeProvider';
 import { CateringEstablishmentsProvider } from 'src/providers/CateringEstablishmentsProvider';
 import { MainTemplate } from 'src/components/templates/MainTemplate/MainTemplate';
 import { CateringEstablishments } from './CateringEstablishments';
-import { OngoingPromotions } from './OngingPromotions';
+import { OngoingPromotions } from './OngoingPromotions';
 
 export const Root = () => {
 	return (

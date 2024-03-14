@@ -22,6 +22,8 @@ export const NavLinksFilters = ({ $isDesktop }: NavLinksFiltersProps) => {
 						key={value}
 						$isActive={currentType === path}
 						$isReversed
+						$isDisabled={currentCategory === 'ongoing-promotions'}
+						tabIndex={currentCategory === 'ongoing-promotions' ? '-1' : '0'}
 						onClick={closeNav}>
 						{title}
 					</StyledNavLink>
