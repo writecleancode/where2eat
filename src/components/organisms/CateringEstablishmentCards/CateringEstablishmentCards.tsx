@@ -1,5 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
+import { usePlaces } from 'src/hooks/usePlaces';
+import { useModal } from 'src/hooks/useModal';
 import { CateringEstablishmentsContext } from 'src/providers/CateringEstablishmentsProvider';
 import { CategoryContext } from 'src/providers/CategoryProvider';
 import { TypeContext } from 'src/providers/TypeProvider';
@@ -14,29 +16,25 @@ import { Wrapper } from './CateringEstablishmentCards.styles';
 import { catetingEstablishmentsType } from 'src/types/types';
 
 export const CateringEstablishmentCards = () => {
-	// const [cateringEstablishments, setCateringEstablishments] = useState<never[] | catetingEstablishmentsType[]>([]);
 	const { cateringEstablishments, setCateringEstablishments, setSortedCateringEstablishments } =
 		useContext(CateringEstablishmentsContext);
 	const [currentPlace, setCurrentPlace] = useState<catetingEstablishmentsType>(cateringEstablishments[0]);
-	const [isModalOpen, setModalState] = useState(false);
 	const { category, type } = useParams();
+	const { getCateringEstablishments } = usePlaces();
+	const { isModalOpen, handleOpenModal, handleCloseModal } = useModal();
 	const { setCategory } = useContext(CategoryContext);
 	const { setType } = useContext(TypeContext);
 
-	const getCateringEstablishments = () => {
-		axios
-			.get(`/${category}/${type}`)
-			.then(({ data }) => setSortedCateringEstablishments(data.matchingCateringEstablishments))
-			.catch(error => console.log(error));
+	const getSortedCateringEstablishments = async () => {
+		const data = await getCateringEstablishments(category, type);
+		setSortedCateringEstablishments(data);
 	};
 
-	const handleOpenModal = (placeId: string) => {
+	const handleDisplayPlaceDetails = (placeId: string) => {
 		const matchingPlace = cateringEstablishments.find(place => place.id === placeId);
 		matchingPlace && setCurrentPlace(matchingPlace);
-		setModalState(true);
+		handleOpenModal();
 	};
-
-	const handleCloseModal = () => setModalState(false);
 
 	const markAsVisited = (index: number, id: string) => {
 		setCateringEstablishments([
@@ -49,7 +47,7 @@ export const CateringEstablishmentCards = () => {
 			.post('/visited', { clickedId: id })
 			.then(() => {
 				if (category === 'unvisited') {
-					getCateringEstablishments();
+					getSortedCateringEstablishments();
 				}
 			})
 			.catch(error => console.log(error));
@@ -66,14 +64,14 @@ export const CateringEstablishmentCards = () => {
 			.post('/favourites', { clickedId: id })
 			.then(() => {
 				if (category === 'favourites') {
-					getCateringEstablishments();
+					getSortedCateringEstablishments();
 				}
 			})
 			.catch(error => console.log(error));
 	};
 
 	useEffect(() => {
-		getCateringEstablishments();
+		getSortedCateringEstablishments();
 
 		category && setCategory(category);
 		type && setType(type);
@@ -92,7 +90,7 @@ export const CateringEstablishmentCards = () => {
 							key={cateringEstablishment.id}
 							cateringEstablishment={cateringEstablishment}
 							index={index}
-							handleOpenModal={handleOpenModal}
+							handleOpenModal={handleDisplayPlaceDetails}
 							markAsVisited={markAsVisited}
 							addToFavourites={addToFavourites}
 						/>

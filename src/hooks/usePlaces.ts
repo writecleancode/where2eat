@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 export const usePlaces = () => {
-	const findPlaces = async (currentCategory: string, currentType: string, searchPhrase: string) => {
+	const getCateringEstablishments = async (category: string | undefined, type: string | undefined) => {
 		try {
-			const { data } = await axios.post(`/${currentCategory}/${currentType}`, { searchPhrase: searchPhrase });
+			const { data } = await axios.get(`/${category}/${type}`);
 			return data.matchingCateringEstablishments;
 		} catch (error) {
 			console.log(error);
@@ -19,8 +19,18 @@ export const usePlaces = () => {
 		}
 	};
 
+	const findPlaces = async (currentCategory: string, currentType: string, searchPhrase: string) => {
+		try {
+			const { data } = await axios.post(`/${currentCategory}/${currentType}`, { searchPhrase: searchPhrase });
+			return data.matchingCateringEstablishments;
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	return {
-		findPlaces,
+		getCateringEstablishments,
 		getSortOptions,
+		findPlaces,
 	};
 };
