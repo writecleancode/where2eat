@@ -1,5 +1,6 @@
 import { createContext, useState } from 'react';
 import { usePlaces } from 'src/hooks/usePlaces';
+import { useSort } from 'src/hooks/useSort';
 import { sortOptions } from 'src/data/sortOptions';
 import {
 	CateringEstablishmentsContextType,
@@ -22,102 +23,10 @@ export const CateringEstablishmentsProvider = ({ children }: CateringEstablishme
 	const [cateringEstablishments, setCateringEstablishments] = useState<never[] | catetingEstablishmentsType[]>([]);
 	const [selectValue, setSelectValue] = useState(sortOptions[0].value);
 	const { getCateringEstablishments } = usePlaces();
+	const { handleSortPlaces } = useSort();
 
 	const setSortedCateringEstablishments = (placesToSort: catetingEstablishmentsType[]) => {
-		setCateringEstablishments(() => {
-			switch (selectValue) {
-				case 'byAlphabet':
-					return placesToSort.sort((a, b) => {
-						if (a.name < b.name) {
-							return -1;
-						} else if (a.name > b.name) {
-							return 1;
-						} else {
-							return 0;
-						}
-					});
-
-				case 'byAlphabetReverse':
-					return placesToSort.sort((a, b) => {
-						if (a.name < b.name) {
-							return 1;
-						} else if (a.name > b.name) {
-							return -1;
-						} else {
-							return 0;
-						}
-					});
-
-				case 'byDistanceFromClosest':
-					return placesToSort.sort((a, b) => {
-						if (Number(a.distance) < Number(b.distance)) {
-							return -1;
-						} else if (Number(a.distance) > Number(b.distance)) {
-							return 1;
-						} else {
-							return 0;
-						}
-					});
-
-				case 'byDistanceFromFartest':
-					return placesToSort.sort((a, b) => {
-						if (Number(a.distance) < Number(b.distance)) {
-							return 1;
-						} else if (Number(a.distance) > Number(b.distance)) {
-							return -1;
-						} else {
-							return 0;
-						}
-					});
-
-				case 'byRatingsFromHighest':
-					return placesToSort.sort((a, b) => {
-						if (Number(a.ratings) < Number(b.ratings)) {
-							return 1;
-						} else if (Number(a.ratings) > Number(b.ratings)) {
-							return -1;
-						} else {
-							return 0;
-						}
-					});
-
-				case 'byRatingsFromLowest':
-					return placesToSort.sort((a, b) => {
-						if (Number(a.ratings) < Number(b.ratings)) {
-							return -1;
-						} else if (Number(a.ratings) > Number(b.ratings)) {
-							return 1;
-						} else {
-							return 0;
-						}
-					});
-
-				case 'byPriceFromLowest':
-					return placesToSort.sort((a, b) => {
-						if (a.prices < b.prices) {
-							return -1;
-						} else if (a.prices > b.prices) {
-							return 1;
-						} else {
-							return 0;
-						}
-					});
-
-				case 'byPriceFromHighest':
-					return placesToSort.sort((a, b) => {
-						if (a.prices < b.prices) {
-							return 1;
-						} else if (a.prices > b.prices) {
-							return -1;
-						} else {
-							return 0;
-						}
-					});
-
-				default:
-					return placesToSort;
-			}
-		});
+		setCateringEstablishments(handleSortPlaces(placesToSort, selectValue));
 	};
 
 	const getSortedCateringEstablishments = async (category: string | undefined, type: string | undefined) => {
