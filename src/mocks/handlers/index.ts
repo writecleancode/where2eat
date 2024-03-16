@@ -1,6 +1,7 @@
 import { HttpResponse, http } from 'msw';
 import { cateringEstablishments } from 'src/data/cateringEstablishments';
 import { sortOptions } from 'src/data/sortOptions';
+import { promotions } from 'src/data/promotions';
 import { catetingEstablishmentsType } from 'src/types/types';
 
 let visited: string[] = JSON.parse(localStorage.getItem('visited') as string) || [];
@@ -194,6 +195,12 @@ export const handlers = [
 	http.get('/sort-options', () => {
 		return HttpResponse.json({
 			sortOptions,
+		});
+	}),
+
+	http.get('/promotions', () => {
+		return HttpResponse.json({
+			promotions,
 		});
 	}),
 ];
