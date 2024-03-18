@@ -5,7 +5,12 @@ export const useError = () => {
 
 	const clearErrorMessage = () => setErrorMessage('');
 
-	const displayErrorMessage = (category?: string, type?: string) => {
+	const displayErrorMessage = (category?: string, type?: string, isSearchActive?: boolean) => {
+		if (isSearchActive) {
+			setErrorMessage('No matching catering establishments found in your area');
+			return;
+		}
+
 		const categoryText = (!category || category === 'all' ? '' : category).replace('-', ' ');
 		const typeText = (!type || type === 'any' ? '' : `of type ${type}`).replace('-', ' ');
 

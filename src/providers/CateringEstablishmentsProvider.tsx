@@ -8,12 +8,16 @@ import {
 	catetingEstablishmentsType,
 } from 'src/types/types';
 
+const initialSearchState = false;
+
 export const CateringEstablishmentsContext = createContext<CateringEstablishmentsContextType>({
 	cateringEstablishments: [],
 	setCateringEstablishments: () => {},
 	setSortedCateringEstablishments: () => {},
 	selectValue: '',
 	setSelectValue: () => {},
+	isSearchActive: initialSearchState,
+	handleSearchState: () => {},
 	getSortedCateringEstablishments: async () => {},
 	toggleVisitedStatus: () => {},
 	toggleFavouriteStaus: () => {},
@@ -22,6 +26,7 @@ export const CateringEstablishmentsContext = createContext<CateringEstablishment
 export const CateringEstablishmentsProvider = ({ children }: CateringEstablishmentsProviderProps) => {
 	const [cateringEstablishments, setCateringEstablishments] = useState<never[] | catetingEstablishmentsType[]>([]);
 	const [selectValue, setSelectValue] = useState(sortOptions[0].value);
+	const [isSearchActive, setSearchState] = useState(initialSearchState);
 	const { getCateringEstablishments } = usePlaces();
 	const { handleSortPlaces } = useSort();
 
@@ -50,6 +55,12 @@ export const CateringEstablishmentsProvider = ({ children }: CateringEstablishme
 		]);
 	};
 
+	const handleSearchState = (searchPhrase: string) => {
+		if (searchPhrase !== '' && isSearchActive === true) return;
+
+		searchPhrase === '' ? setSearchState(false) : setSearchState(true);
+	};
+
 	return (
 		<CateringEstablishmentsContext.Provider
 			value={{
@@ -58,6 +69,8 @@ export const CateringEstablishmentsProvider = ({ children }: CateringEstablishme
 				setSortedCateringEstablishments,
 				selectValue,
 				setSelectValue,
+				isSearchActive,
+				handleSearchState,
 				getSortedCateringEstablishments,
 				toggleVisitedStatus,
 				toggleFavouriteStaus,

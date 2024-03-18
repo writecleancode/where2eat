@@ -10,13 +10,15 @@ export const SearchInput = () => {
 	const [inputValue, setInputValue] = useState('');
 	const { currentCategory } = useContext(CategoryContext);
 	const { currentType } = useContext(TypeContext);
-	const { setSortedCateringEstablishments } = useContext(CateringEstablishmentsContext);
+	const { setSortedCateringEstablishments, handleSearchState } = useContext(CateringEstablishmentsContext);
 	const { findPlaces } = usePlaces();
 
 	const getMatchingPlaces = useCallback(
 		debounce(async (searchPhrase: string) => {
 			const matchingPlaces = await findPlaces(currentCategory, currentType, searchPhrase);
 			setSortedCateringEstablishments(matchingPlaces);
+
+			handleSearchState(searchPhrase);
 		}, 500),
 		[currentCategory, currentType, setSortedCateringEstablishments]
 	);

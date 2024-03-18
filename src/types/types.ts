@@ -81,9 +81,11 @@ export type CateringEstablishmentsContextType = {
 	setSortedCateringEstablishments: (placesToSort: catetingEstablishmentsType[]) => void;
 	selectValue: string;
 	setSelectValue: Dispatch<SetStateAction<string | string>>;
-	getSortedCateringEstablishments: (category: string | undefined, type: string | undefined) => Promise<void>,
-	toggleVisitedStatus: (index: number) => void,
-	toggleFavouriteStaus: (index: number) => void,
+	isSearchActive: boolean;
+	handleSearchState: (searchPhrase: string) => void;
+	getSortedCateringEstablishments: (category: string | undefined, type: string | undefined) => Promise<void>;
+	toggleVisitedStatus: (index: number) => void;
+	toggleFavouriteStaus: (index: number) => void;
 };
 
 export type CateringEstablishmentsProviderProps = {

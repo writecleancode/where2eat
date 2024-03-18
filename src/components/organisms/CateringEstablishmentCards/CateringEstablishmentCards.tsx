@@ -16,8 +16,13 @@ import { Wrapper } from './CateringEstablishmentCards.styles';
 import { catetingEstablishmentsType } from 'src/types/types';
 
 export const CateringEstablishmentCards = () => {
-	const { cateringEstablishments, getSortedCateringEstablishments, toggleVisitedStatus, toggleFavouriteStaus } =
-		useContext(CateringEstablishmentsContext);
+	const {
+		cateringEstablishments,
+		getSortedCateringEstablishments,
+		toggleVisitedStatus,
+		toggleFavouriteStaus,
+		isSearchActive,
+	} = useContext(CateringEstablishmentsContext);
 	const [currentPlace, setCurrentPlace] = useState<catetingEstablishmentsType>(cateringEstablishments[0]);
 	const { category, type } = useParams();
 	const { isModalOpen, handleOpenModal, handleCloseModal } = useModal();
@@ -61,7 +66,7 @@ export const CateringEstablishmentCards = () => {
 	}, [category, type]);
 
 	useEffect(() => {
-		cateringEstablishments.length === 0 ? displayErrorMessage(category, type) : clearErrorMessage();
+		cateringEstablishments.length === 0 ? displayErrorMessage(category, type, isSearchActive) : clearErrorMessage();
 	}, [cateringEstablishments]);
 
 	if (!category) return <Navigate to={`/${navCategories[0].path}/${cateringEstabilishmentsTypes[0].path}`} />;
