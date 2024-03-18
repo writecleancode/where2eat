@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
 import { useModal } from 'src/hooks/useModal';
+import { useError } from 'src/hooks/useError';
 import { CateringEstablishmentsContext } from 'src/providers/CateringEstablishmentsProvider';
 import { CategoryContext } from 'src/providers/CategoryProvider';
 import { TypeContext } from 'src/providers/TypeProvider';
@@ -20,6 +21,7 @@ export const CateringEstablishmentCards = () => {
 	const [currentPlace, setCurrentPlace] = useState<catetingEstablishmentsType>(cateringEstablishments[0]);
 	const { category, type } = useParams();
 	const { isModalOpen, handleOpenModal, handleCloseModal } = useModal();
+	const { errorMessage, displayErrorMessage, clearErrorMessage } = useError();
 	const { setCategory } = useContext(CategoryContext);
 	const { setType } = useContext(TypeContext);
 
@@ -58,6 +60,10 @@ export const CateringEstablishmentCards = () => {
 		type && setType(type);
 	}, [category, type]);
 
+	useEffect(() => {
+		cateringEstablishments.length === 0 ? displayErrorMessage(category, type) : clearErrorMessage();
+	}, [cateringEstablishments]);
+
 	if (!category) return <Navigate to={`/${navCategories[0].path}/${cateringEstabilishmentsTypes[0].path}`} />;
 	if (category && category !== 'ongoing-promotions' && !type)
 		return <Navigate to={`/${category}/${cateringEstabilishmentsTypes[0].path}`} />;
@@ -80,6 +86,8 @@ export const CateringEstablishmentCards = () => {
 						<CateringEstablishmentDetails cateringEstablishment={currentPlace} handleCloseModal={handleCloseModal} />
 					</Modal>
 				</>
+			) : errorMessage ? (
+				<p>{errorMessage}</p>
 			) : (
 				<LoadingGif />
 			)}
