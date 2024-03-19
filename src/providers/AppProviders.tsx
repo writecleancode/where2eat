@@ -1,3 +1,4 @@
+import { BrowserRouter as Router } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { theme } from 'src/assets/styles/theme';
 import { NavProvider } from './NavProvider';
@@ -9,17 +10,19 @@ import { AppProvidersType } from 'src/types/types';
 
 export const AppProviders = ({ children }: AppProvidersType) => {
 	return (
-		<ThemeProvider theme={theme}>
-			<NavProvider>
-				<CategoryProvider>
-					<TypeProvider>
-						<CateringEstablishmentsProvider>
-							<GlobalStyle />
-							{children}
-						</CateringEstablishmentsProvider>
-					</TypeProvider>
-				</CategoryProvider>
-			</NavProvider>
-		</ThemeProvider>
+		<Router>
+			<ThemeProvider theme={theme}>
+				<NavProvider>
+					<CategoryProvider>
+						<TypeProvider>
+							<CateringEstablishmentsProvider>
+								<GlobalStyle />
+								{children}
+							</CateringEstablishmentsProvider>
+						</TypeProvider>
+					</CategoryProvider>
+				</NavProvider>
+			</ThemeProvider>
+		</Router>
 	);
 };
