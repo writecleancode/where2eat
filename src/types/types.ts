@@ -66,6 +66,10 @@ export type MainTemplateProps = {
 	children?: ReactNode;
 };
 
+export type AppProvidersType = {
+	children: ReactNode;
+};
+
 export type CategoryContextType = {
 	currentCategory: string;
 	setCategory: (category: string) => void;
