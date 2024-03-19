@@ -1,9 +1,9 @@
 import { useContext, useEffect } from 'react';
+import { usePromotions } from 'src/hooks/usePromotions';
 import { CategoryContext } from 'src/providers/CategoryProvider';
 import { PromotionsCard } from 'src/components/molecules/PromotionsCard/PromotionsCard';
 import { NoResultsText } from 'src/components/atoms/NoResultsText/NoResultsText';
 import { Wrapper } from './OngoingPromotions.styles';
-import { usePromotions } from 'src/hooks/usePromotions';
 
 export const OngoingPromotions = () => {
 	const { promotions, getPromotionsData } = usePromotions();

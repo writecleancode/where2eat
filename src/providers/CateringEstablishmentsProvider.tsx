@@ -1,7 +1,7 @@
 import { createContext, useState } from 'react';
 import { usePlaces } from 'src/hooks/usePlaces';
 import { useSort } from 'src/hooks/useSort';
-import { sortOptions } from 'src/data/sortOptions';
+import { sortOptions } from 'src/mocks/data/sortOptions';
 import {
 	CateringEstablishmentsContextType,
 	CateringEstablishmentsProviderProps,

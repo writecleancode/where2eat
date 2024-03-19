@@ -18,6 +18,24 @@ export type catetingEstablishmentsType = {
 	isFavourite: boolean;
 };
 
+export type promotionsDataType = {
+	placeName: string;
+	image: {
+		url: string;
+		alt: string;
+	};
+	promotionsList: string[];
+};
+
+export type DatoCmsPromotionsDataType = {
+	placeName: string;
+	image: {
+		url: string;
+		alt: string;
+	};
+	promotionsList: string;
+};
+
 export type BurgerButtonProps = {
 	onClick: () => void;
 };
@@ -48,12 +66,7 @@ export type NavLinksFiltersProps = {
 };
 
 export type PromotionsCardProps = {
-	promotionItem: {
-		place: string;
-		imgURL: string;
-		imgAlt: string;
-		promotionsList: string[];
-	};
+	promotionItem: promotionsDataType;
 };
 
 export type ModalProps = {
