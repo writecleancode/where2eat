@@ -20,6 +20,7 @@ export const CateringEstablishmentCards = () => {
 	const {
 		cateringEstablishments,
 		getSortedCateringEstablishments,
+		isLoading,
 		toggleVisitedStatus,
 		toggleFavouriteStaus,
 		isSearchActive,
@@ -92,10 +93,10 @@ export const CateringEstablishmentCards = () => {
 						<CateringEstablishmentDetails cateringEstablishment={currentPlace} handleCloseModal={handleCloseModal} />
 					</Modal>
 				</>
-			) : errorMessage ? (
-				<NoResultsText>{errorMessage}</NoResultsText>
-			) : (
+			) : isLoading ? (
 				<LoadingGif />
+			) : (
+				<NoResultsText>{errorMessage}</NoResultsText>
 			)}
 		</Wrapper>
 	);

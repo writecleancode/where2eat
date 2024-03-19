@@ -1,4 +1,5 @@
 import { createContext, useState } from 'react';
+import { useLoading } from 'src/hooks/useLoading';
 import { usePlaces } from 'src/hooks/usePlaces';
 import { useSort } from 'src/hooks/useSort';
 import { sortOptions } from 'src/mocks/data/sortOptions';
@@ -8,12 +9,14 @@ import {
 	catetingEstablishmentsType,
 } from 'src/types/types';
 
+const initialLoadingState = true;
 const initialSearchState = false;
 
 export const CateringEstablishmentsContext = createContext<CateringEstablishmentsContextType>({
 	cateringEstablishments: [],
 	setCateringEstablishments: () => {},
 	setSortedCateringEstablishments: () => {},
+	isLoading: initialLoadingState,
 	selectValue: '',
 	setSelectValue: () => {},
 	isSearchActive: initialSearchState,
@@ -27,6 +30,7 @@ export const CateringEstablishmentsProvider = ({ children }: CateringEstablishme
 	const [cateringEstablishments, setCateringEstablishments] = useState<never[] | catetingEstablishmentsType[]>([]);
 	const [selectValue, setSelectValue] = useState(sortOptions[0].value);
 	const [isSearchActive, setSearchState] = useState(initialSearchState);
+	const { isLoading, setLoadingCompleted } = useLoading();
 	const { getCateringEstablishments } = usePlaces();
 	const { handleSortPlaces } = useSort();
 
@@ -37,6 +41,7 @@ export const CateringEstablishmentsProvider = ({ children }: CateringEstablishme
 	const getSortedCateringEstablishments = async (category: string | undefined, type: string | undefined) => {
 		const data = await getCateringEstablishments(category, type);
 		setSortedCateringEstablishments(data);
+		setLoadingCompleted();
 	};
 
 	const toggleVisitedStatus = (index: number) => {
@@ -67,6 +72,7 @@ export const CateringEstablishmentsProvider = ({ children }: CateringEstablishme
 				cateringEstablishments,
 				setCateringEstablishments,
 				setSortedCateringEstablishments,
+				isLoading,
 				selectValue,
 				setSelectValue,
 				isSearchActive,
