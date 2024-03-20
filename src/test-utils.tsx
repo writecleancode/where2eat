@@ -1,4 +1,5 @@
 import React, { ReactElement } from 'react';
+import '@testing-library/jest-dom';
 import { render, RenderOptions } from '@testing-library/react';
 import { AppProviders } from './providers/AppProviders';
 
