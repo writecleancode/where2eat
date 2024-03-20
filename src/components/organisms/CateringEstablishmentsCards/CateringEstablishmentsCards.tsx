@@ -13,10 +13,10 @@ import { Modal } from '../Modal/Modal';
 import { CateringEstablishmentDetails } from 'src/components/molecules/CateringEstablishmentDetails/CateringEstablishmentDetails';
 import { NoResultsText } from 'src/components/atoms/NoResultsText/NoResultsText';
 import { LoadingGif } from 'src/components/atoms/LoadingGif/LoadingGif';
-import { Wrapper } from './CateringEstablishmentCards.styles';
+import { Wrapper } from './CateringEstablishmentsCards.styles';
 import { catetingEstablishmentsType } from 'src/types/types';
 
-export const CateringEstablishmentCards = () => {
+export const CateringEstablishmentsCards = () => {
 	const {
 		cateringEstablishments,
 		getSortedCateringEstablishments,

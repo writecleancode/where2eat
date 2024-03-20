@@ -1,6 +1,6 @@
 import { SortSelect } from 'src/components/atoms/SortSelect/SortSelect';
 import { SearchInput } from 'src/components/atoms/SearchInput/SearchInput';
-import { CateringEstablishmentCards } from 'src/components/organisms/CateringEstablishmentCards/CateringEstablishmentCards';
+import { CateringEstablishmentsCards } from 'src/components/organisms/CateringEstablishmentsCards/CateringEstablishmentsCards';
 import { ControlsWrapper, Wrapper } from './CateringEstablishments.styles';
 
 export const CateringEstablishments = () => {
@@ -10,7 +10,7 @@ export const CateringEstablishments = () => {
 				<SortSelect />
 				<SearchInput />
 			</ControlsWrapper>
-			<CateringEstablishmentCards />
+			<CateringEstablishmentsCards />
 		</Wrapper>
 	);
 };

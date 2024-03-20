@@ -75,7 +75,7 @@ export const CateringEstablishmentCard = ({
 				<IconButton
 					iconURL='/src/assets/icons/heart.svg'
 					iconTwoURL='/src/assets/icons/heart-fill.svg'
-					label='Add to favorites'
+					label='Add to favourites'
 					isActive={isFavourite}
 					onClick={() => handleFavouritesStatus(index, id)}
 				/>
