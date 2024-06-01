@@ -61,20 +61,20 @@ export const CateringEstablishmentCard = ({
 			</InfoWrapper>
 			<IconsWrapper>
 				<IconButton
-					iconURL='/src/assets/icons/info.svg'
+					iconURL='/icons/info.svg'
 					label='Show more details'
 					onClick={() => handleOpenModal(id)}
 				/>
 				<IconButton
-					iconURL='/src/assets/icons/check.svg'
-					iconTwoURL='/src/assets/icons/check-fill.svg'
+					iconURL='/icons/check.svg'
+					iconTwoURL='/icons/check-fill.svg'
 					label='Mark as visited'
 					isActive={isVisited}
 					onClick={() => handleVisitedStatus(index, id)}
 				/>
 				<IconButton
-					iconURL='/src/assets/icons/heart.svg'
-					iconTwoURL='/src/assets/icons/heart-fill.svg'
+					iconURL='/icons/heart.svg'
+					iconTwoURL='/icons/heart-fill.svg'
 					label='Add to favourites'
 					isActive={isFavourite}
 					onClick={() => handleFavouritesStatus(index, id)}

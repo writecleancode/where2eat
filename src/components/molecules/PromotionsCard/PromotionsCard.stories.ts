@@ -10,7 +10,7 @@ const meta = {
 		promotionItem: {
 			placeName: 'Ga Grasso',
 			image: {
-				url: '/src/assets/img/da_grasso.jpg',
+				url: '/img/da_grasso.jpg',
 				alt: 'pizza',
 			},
 			promotionsList: [

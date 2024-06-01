@@ -1,10 +1,10 @@
-import { FormEvent, useCallback, useContext, useEffect, useState } from 'react';
+import { ChangeEvent, useCallback, useContext, useEffect, useState } from 'react';
 import { CategoryContext } from 'src/providers/CategoryProvider';
 import { TypeContext } from 'src/providers/TypeProvider';
 import { CateringEstablishmentsContext } from 'src/providers/CateringEstablishmentsProvider';
 import { usePlaces } from 'src/hooks/usePlaces';
 import { debounce } from 'lodash';
-import { StyledIcon, StyledInput, Wrapper } from './SearchInput.styles';
+import { IconWrapper, StyledIcon, StyledInput, Wrapper } from './SearchInput.styles';
 
 export const SearchInput = () => {
 	const [inputValue, setInputValue] = useState('');
@@ -23,11 +23,11 @@ export const SearchInput = () => {
 		[currentCategory, currentType, setSortedCateringEstablishments]
 	);
 
-	const handleSearchInput = async (e: FormEvent<HTMLInputElement>) => {
-		setInputValue(e.currentTarget.value);
+	const handleSearchInput = async (e: ChangeEvent<HTMLInputElement>) => {
+		setInputValue(e.target.value);
 
 		if (!currentCategory || !currentType) return;
-		getMatchingPlaces(e.currentTarget.value);
+		getMatchingPlaces(e.target.value);
 	};
 
 	useEffect(() => {
@@ -37,7 +37,9 @@ export const SearchInput = () => {
 	return (
 		<Wrapper>
 			<StyledInput type='text' aria-label='search' value={inputValue} onChange={handleSearchInput} />
-			<StyledIcon src='/src/assets/icons/search.svg' alt='' />
+			<IconWrapper>
+				<StyledIcon src='/icons/search.svg' alt='' />
+			</IconWrapper>
 		</Wrapper>
 	);
 };

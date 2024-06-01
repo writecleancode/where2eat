@@ -19,7 +19,13 @@ export const StyledInput = styled.input`
 	font-size: 1.4rem;
 `;
 
+export const IconWrapper = styled.div`
+	width: 32px;
+	width: max-content;
+`;
+
 export const StyledIcon = styled.img`
+	/* display: inline-block; */
 	padding: 0.4rem;
 	border-left: 1px solid ${({ theme }) => theme.colors.black25};
 `;

@@ -27,14 +27,14 @@ export const SortSelect = () => {
 
 	return (
 		<Wrapper>
-			<StyledSelect title='sort' onChange={e => setSelectValue(e.currentTarget.value)}>
+			<StyledSelect title='sort' onChange={e => setSelectValue(e.target.value)}>
 				{sortOptions.map(({ text, value }) => (
 					<StyledOption key={value} value={value}>
 						{text}
 					</StyledOption>
 				))}
 			</StyledSelect>
-			<SelectArrowDown src='/src/assets/icons/arrow-down.svg' alt='' />
+			<SelectArrowDown src='/icons/arrow-down.svg' alt='' />
 		</Wrapper>
 	);
 };

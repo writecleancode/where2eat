@@ -36,7 +36,7 @@ export const CateringEstablishmentDetails = ({
 				<p>{phoneNumber}</p>
 			</ContactWrapper>
 			<CloseButton onClick={handleCloseModal} aria-label='close modal' type='button'>
-				<img src='/src/assets/icons/x-mark.svg' alt='' />
+				<img src='/icons/x-mark.svg' alt='' />
 			</CloseButton>
 		</Wrapper>
 	);
