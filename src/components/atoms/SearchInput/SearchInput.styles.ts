@@ -8,6 +8,7 @@ export const Wrapper = styled.div`
 
 	@media (min-width: 460px) {
 		max-width: 240px;
+		min-width: min-content;
 	}
 `;
 
@@ -19,13 +20,12 @@ export const StyledInput = styled.input`
 	font-size: 1.4rem;
 `;
 
-export const IconWrapper = styled.div`
+export const StyledLabel = styled.label`
+	border-left: 1px solid ${({ theme }) => theme.colors.black25};
 	width: 32px;
 	width: max-content;
 `;
 
 export const StyledIcon = styled.img`
-	/* display: inline-block; */
 	padding: 0.4rem;
-	border-left: 1px solid ${({ theme }) => theme.colors.black25};
 `;

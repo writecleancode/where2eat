@@ -4,7 +4,7 @@ import { TypeContext } from 'src/providers/TypeProvider';
 import { CateringEstablishmentsContext } from 'src/providers/CateringEstablishmentsProvider';
 import { usePlaces } from 'src/hooks/usePlaces';
 import { debounce } from 'lodash';
-import { IconWrapper, StyledIcon, StyledInput, Wrapper } from './SearchInput.styles';
+import { StyledLabel, StyledIcon, StyledInput, Wrapper } from './SearchInput.styles';
 
 export const SearchInput = () => {
 	const [inputValue, setInputValue] = useState('');
@@ -36,10 +36,10 @@ export const SearchInput = () => {
 
 	return (
 		<Wrapper>
-			<StyledInput type='text' aria-label='search' value={inputValue} onChange={handleSearchInput} />
-			<IconWrapper>
+			<StyledInput type='text' aria-label='search' id='search' value={inputValue} onChange={handleSearchInput} />
+			<StyledLabel htmlFor='search' aria-label='search'>
 				<StyledIcon src='/icons/search.svg' alt='' />
-			</IconWrapper>
+			</StyledLabel>
 		</Wrapper>
 	);
 };
