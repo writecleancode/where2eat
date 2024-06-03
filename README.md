@@ -29,6 +29,10 @@ The application's function is to mimic finding dining establishments nearby. Key
 
 The application was written mainly to consolidate React, unit tests, Storybook and Typescript, and to practice data retrieval with the Rest API architecture using Axios.
 
+The app is fully responsive. 📱💻🖥
+
+Lines of code rewritten from tutorials: 0 ✔
+
 Framework:
 - **React**
 
@@ -65,10 +69,6 @@ Language:
 
 Build tool:
 - **Vite**
-
-The app is fully responsive. 📱💻🖥
-
-Lines of code rewritten from tutorials: 0 ✔
 
 
 
