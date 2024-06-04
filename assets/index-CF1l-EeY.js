@@ -388,7 +388,7 @@ table {
 	min-height: 50vh;
 `,K1=M.img`
 	max-width: 80px;
-`,Sh=()=>N.jsx(Q1,{children:N.jsx(K1,{src:"/img/loading_animation.gif",alt:"loading animation"})}),G1=M.div`
+`,Sh=()=>N.jsx(Q1,{children:N.jsx(K1,{src:"img/loading_animation.gif",alt:"loading animation"})}),G1=M.div`
 	display: flex;
 	flex-direction: column;
 	gap: 1.6rem;
