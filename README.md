@@ -80,6 +80,9 @@ Language:
 Build tool:
 - **Vite**
 
+Components structure:
+- **Atomic Design**
+
 
 
 ## TECHNOLOGIES
