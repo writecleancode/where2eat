@@ -27,7 +27,7 @@ export const StyledOption = styled.option`
 
 export const SelectArrowDown = styled.img`
 	position: absolute;
-	top: 0;
+	top: 2px;
 	right: 0;
 	padding: 0.4rem;
 	pointer-events: none;

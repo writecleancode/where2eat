@@ -6,6 +6,7 @@ import { navCategories } from 'src/data/navCategories';
 import { NavButtonsWrapper } from 'src/components/atoms/NavButtonsWrapper/NavButtonsWrapper';
 import { StyledNavLink } from 'src/components/atoms/StyledLink/StyledNavButton';
 import { HorizontalLine } from 'src/components/atoms/HorizontalLine/HorizontalLine';
+import { basePath } from 'src/utils/base-path';
 
 export const NavLinks = () => {
 	const { closeNav } = useContext(NavContext);
@@ -21,7 +22,7 @@ export const NavLinks = () => {
 		<NavButtonsWrapper>
 			{navCategories.map(({ title, value, path }) => (
 				<StyledNavLink
-					to={`/${path}/${currentType}`}
+					to={`${basePath}/${path}/${currentType}`}
 					key={value}
 					onClick={closeNav}
 					$isActive={currentCategory === path}>
@@ -30,7 +31,7 @@ export const NavLinks = () => {
 			))}
 			<HorizontalLine $isShort />
 			<StyledNavLink
-				to={`/ongoing-promotions`}
+				to={`${basePath}/ongoing-promotions`}
 				$isActive={currentCategory === 'ongoing-promotions'}
 				onClick={handleOgnoingPromotions}>
 				Ongoing Promotions

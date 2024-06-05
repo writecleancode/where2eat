@@ -13,18 +13,13 @@ import { Modal } from '../Modal/Modal';
 import { CateringEstablishmentDetails } from 'src/components/molecules/CateringEstablishmentDetails/CateringEstablishmentDetails';
 import { NoResultsText } from 'src/components/atoms/NoResultsText/NoResultsText';
 import { LoadingGif } from 'src/components/atoms/LoadingGif/LoadingGif';
+import { basePath } from 'src/utils/base-path';
 import { Wrapper } from './CateringEstablishmentsCards.styles';
 import { catetingEstablishmentsType } from 'src/types/types';
 
 export const CateringEstablishmentsCards = () => {
-	const {
-		cateringEstablishments,
-		getSortedCateringEstablishments,
-		isLoading,
-		toggleVisitedStatus,
-		toggleFavouriteStaus,
-		isSearchActive,
-	} = useContext(CateringEstablishmentsContext);
+	const { cateringEstablishments, getSortedCateringEstablishments, isLoading, toggleVisitedStatus, toggleFavouriteStaus, isSearchActive } =
+		useContext(CateringEstablishmentsContext);
 	const [currentPlace, setCurrentPlace] = useState<catetingEstablishmentsType>(cateringEstablishments[0]);
 	const { category, type } = useParams();
 	const { isModalOpen, handleOpenModal, handleCloseModal } = useModal();
@@ -71,9 +66,9 @@ export const CateringEstablishmentsCards = () => {
 		cateringEstablishments.length === 0 ? displayErrorMessage(category, type, isSearchActive) : clearErrorMessage();
 	}, [cateringEstablishments]);
 
-	if (!category) return <Navigate to={`/${navCategories[0].path}/${cateringEstabilishmentsTypes[0].path}`} />;
+	if (!category) return <Navigate to={`${basePath}/${navCategories[0].path}/${cateringEstabilishmentsTypes[0].path}`} />;
 	if (category && category !== 'ongoing-promotions' && !type)
-		return <Navigate to={`/${category}/${cateringEstabilishmentsTypes[0].path}`} />;
+		return <Navigate to={`${basePath}/${category}/${cateringEstabilishmentsTypes[0].path}`} />;
 
 	return (
 		<Wrapper>

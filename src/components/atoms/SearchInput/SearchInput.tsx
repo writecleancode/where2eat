@@ -4,6 +4,7 @@ import { TypeContext } from 'src/providers/TypeProvider';
 import { CateringEstablishmentsContext } from 'src/providers/CateringEstablishmentsProvider';
 import { usePlaces } from 'src/hooks/usePlaces';
 import { debounce } from 'lodash';
+import { basePath } from 'src/utils/base-path';
 import { StyledLabel, StyledIcon, StyledInput, Wrapper } from './SearchInput.styles';
 
 export const SearchInput = () => {
@@ -38,7 +39,7 @@ export const SearchInput = () => {
 		<Wrapper>
 			<StyledInput type='text' aria-label='search' id='search' value={inputValue} onChange={handleSearchInput} />
 			<StyledLabel htmlFor='search' aria-label='search'>
-				<StyledIcon src='/icons/search.svg' alt='' />
+				<StyledIcon src={`${basePath}/icons/search.svg`} alt='' />
 			</StyledLabel>
 		</Wrapper>
 	);

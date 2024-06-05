@@ -3,11 +3,7 @@ import { useLoading } from 'src/hooks/useLoading';
 import { usePlaces } from 'src/hooks/usePlaces';
 import { useSort } from 'src/hooks/useSort';
 import { sortOptions } from 'src/mocks/data/sortOptions';
-import {
-	CateringEstablishmentsContextType,
-	CateringEstablishmentsProviderProps,
-	catetingEstablishmentsType,
-} from 'src/types/types';
+import { CateringEstablishmentsContextType, CateringEstablishmentsProviderProps, catetingEstablishmentsType } from 'src/types/types';
 
 const initialLoadingState = true;
 const initialSearchState = false;

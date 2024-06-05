@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from 'react';
 import { CateringEstablishmentsContext } from 'src/providers/CateringEstablishmentsProvider';
 import { usePlaces } from 'src/hooks/usePlaces';
 import { useSort } from 'src/hooks/useSort';
+import { basePath } from 'src/utils/base-path';
 import { SelectArrowDown, StyledOption, StyledSelect, Wrapper } from './SortSelect.styles';
 
 export const SortSelect = () => {
@@ -34,7 +35,7 @@ export const SortSelect = () => {
 					</StyledOption>
 				))}
 			</StyledSelect>
-			<SelectArrowDown src='/icons/arrow-down.svg' alt='' />
+			<SelectArrowDown src={`${basePath}/icons/arrow-down.svg`} alt='' />
 		</Wrapper>
 	);
 };

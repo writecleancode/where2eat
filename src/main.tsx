@@ -5,8 +5,13 @@ import { Root } from './views/Root.tsx';
 
 const enableMocking = async () => {
 	const { worker } = await import('./mocks/browser.ts');
+	const workerUrl =
+		process.env.NODE_ENV === 'development' ? '/mockServiceWorker.js' : 'https://writecleancode.github.io/where2eat/mockServiceWorker.js';
 
 	return worker.start({
+		serviceWorker: {
+			url: workerUrl,
+		},
 		onUnhandledRequest: 'bypass',
 	});
 };

@@ -12,6 +12,9 @@ export const GlobalStyle = createGlobalStyle`
 html {
     font-size: 62.5%;
     scroll-behavior: smooth;
+    overflow: auto;
+    margin-left: calc(100vw - 100%);
+	margin-right: 0;
 }
 
 body {

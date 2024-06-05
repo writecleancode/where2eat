@@ -27,7 +27,7 @@ const getMatchingPlaces = (cateringEstablishments: catetingEstablishmentsType[],
 };
 
 export const handlers = [
-	http.get('/:category/:type', ({ params }: { params: Record<string, string> }) => {
+	http.get(`/:category/:type`, ({ params }: { params: Record<string, string> }) => {
 		switch (params.category) {
 			case 'all':
 				return HttpResponse.json({
@@ -58,15 +58,9 @@ export const handlers = [
 
 				const currentlyOpenCateringEstablishments = cateringEstablishments.filter(place => {
 					if (place.openHours[currentDay].closingAt > place.openHours[currentDay].openingAt) {
-						return (
-							currentTime >= place.openHours[currentDay].openingAt &&
-							currentTime < place.openHours[currentDay].closingAt
-						);
+						return currentTime >= place.openHours[currentDay].openingAt && currentTime < place.openHours[currentDay].closingAt;
 					} else if (place.openHours[currentDay].closingAt < place.openHours[currentDay].openingAt) {
-						return (
-							currentTime >= place.openHours[currentDay].openingAt ||
-							currentTime < place.openHours[currentDay].closingAt
-						);
+						return currentTime >= place.openHours[currentDay].openingAt || currentTime < place.openHours[currentDay].closingAt;
 					} else if (place.openHours[currentDay].closingAt === place.openHours[currentDay].openingAt) {
 						return true;
 					} else {
@@ -75,10 +69,7 @@ export const handlers = [
 				});
 
 				return HttpResponse.json({
-					matchingCateringEstablishments: checkUserPreferences(
-						currentlyOpenCateringEstablishments,
-						params.type as string | undefined
-					),
+					matchingCateringEstablishments: checkUserPreferences(currentlyOpenCateringEstablishments, params.type as string | undefined),
 				});
 
 			default:
@@ -88,88 +79,71 @@ export const handlers = [
 		}
 	}),
 
-	http.post(
-		'/:category/:type',
-		async ({ request, params }: { request: Record<string, any>; params: Record<string, any> }) => {
-			const { searchPhrase } = await request.json();
+	http.post('/:category/:type', async ({ request, params }: { request: Record<string, any>; params: Record<string, any> }) => {
+		const { searchPhrase } = await request.json();
 
-			switch (params.category) {
-				case 'all':
-					return HttpResponse.json({
-						matchingCateringEstablishments: getMatchingPlaces(
-							checkUserPreferences(cateringEstablishments, params.type),
-							searchPhrase
-						),
-					});
+		switch (params.category) {
+			case 'all':
+				return HttpResponse.json({
+					matchingCateringEstablishments: getMatchingPlaces(checkUserPreferences(cateringEstablishments, params.type), searchPhrase),
+				});
 
-				case 'unvisited':
-					const unvisitedCateringEstablishments = cateringEstablishments.filter(place => !visited.includes(place.id));
-					return HttpResponse.json({
-						matchingCateringEstablishments: getMatchingPlaces(
-							checkUserPreferences(unvisitedCateringEstablishments, params.type),
-							searchPhrase
-						),
-					});
+			case 'unvisited':
+				const unvisitedCateringEstablishments = cateringEstablishments.filter(place => !visited.includes(place.id));
+				return HttpResponse.json({
+					matchingCateringEstablishments: getMatchingPlaces(
+						checkUserPreferences(unvisitedCateringEstablishments, params.type),
+						searchPhrase
+					),
+				});
 
-				case 'favourites':
-					const favouriteCateringEstablishments = cateringEstablishments.filter(place => favourites.includes(place.id));
-					return HttpResponse.json({
-						matchingCateringEstablishments: getMatchingPlaces(
-							checkUserPreferences(favouriteCateringEstablishments, params.type),
-							searchPhrase
-						),
-					});
+			case 'favourites':
+				const favouriteCateringEstablishments = cateringEstablishments.filter(place => favourites.includes(place.id));
+				return HttpResponse.json({
+					matchingCateringEstablishments: getMatchingPlaces(
+						checkUserPreferences(favouriteCateringEstablishments, params.type),
+						searchPhrase
+					),
+				});
 
-				case 'highly-rated':
-					const highlyRatedCateringEstablishments = cateringEstablishments.filter(
-						place => Number(place.ratings) >= 4.8
-					);
-					return HttpResponse.json({
-						matchingCateringEstablishments: getMatchingPlaces(
-							checkUserPreferences(highlyRatedCateringEstablishments, params.type),
-							searchPhrase
-						),
-					});
+			case 'highly-rated':
+				const highlyRatedCateringEstablishments = cateringEstablishments.filter(place => Number(place.ratings) >= 4.8);
+				return HttpResponse.json({
+					matchingCateringEstablishments: getMatchingPlaces(
+						checkUserPreferences(highlyRatedCateringEstablishments, params.type),
+						searchPhrase
+					),
+				});
 
-				case 'currently-open':
-					const currentDay = new Date().getDay();
-					const currentTime = new Date().toLocaleTimeString('pl-PL').slice(0, -3);
+			case 'currently-open':
+				const currentDay = new Date().getDay();
+				const currentTime = new Date().toLocaleTimeString('pl-PL').slice(0, -3);
 
-					const currentlyOpenCateringEstablishments = cateringEstablishments.filter(place => {
-						if (place.openHours[currentDay].closingAt > place.openHours[currentDay].openingAt) {
-							return (
-								currentTime >= place.openHours[currentDay].openingAt &&
-								currentTime < place.openHours[currentDay].closingAt
-							);
-						} else if (place.openHours[currentDay].closingAt < place.openHours[currentDay].openingAt) {
-							return (
-								currentTime >= place.openHours[currentDay].openingAt ||
-								currentTime < place.openHours[currentDay].closingAt
-							);
-						} else if (place.openHours[currentDay].closingAt === place.openHours[currentDay].openingAt) {
-							return true;
-						} else {
-							return false;
-						}
-					});
+				const currentlyOpenCateringEstablishments = cateringEstablishments.filter(place => {
+					if (place.openHours[currentDay].closingAt > place.openHours[currentDay].openingAt) {
+						return currentTime >= place.openHours[currentDay].openingAt && currentTime < place.openHours[currentDay].closingAt;
+					} else if (place.openHours[currentDay].closingAt < place.openHours[currentDay].openingAt) {
+						return currentTime >= place.openHours[currentDay].openingAt || currentTime < place.openHours[currentDay].closingAt;
+					} else if (place.openHours[currentDay].closingAt === place.openHours[currentDay].openingAt) {
+						return true;
+					} else {
+						return false;
+					}
+				});
 
-					return HttpResponse.json({
-						matchingCateringEstablishments: getMatchingPlaces(
-							checkUserPreferences(currentlyOpenCateringEstablishments, params.type as string | undefined),
-							searchPhrase
-						),
-					});
+				return HttpResponse.json({
+					matchingCateringEstablishments: getMatchingPlaces(
+						checkUserPreferences(currentlyOpenCateringEstablishments, params.type as string | undefined),
+						searchPhrase
+					),
+				});
 
-				default:
-					return HttpResponse.json({
-						matchingCateringEstablishments: getMatchingPlaces(
-							checkUserPreferences(cateringEstablishments),
-							searchPhrase
-						),
-					});
-			}
+			default:
+				return HttpResponse.json({
+					matchingCateringEstablishments: getMatchingPlaces(checkUserPreferences(cateringEstablishments), searchPhrase),
+				});
 		}
-	),
+	}),
 
 	http.post('/visited', async ({ request }) => {
 		const { clickedId } = (await request.json()) as Record<string, string>;
@@ -183,9 +157,7 @@ export const handlers = [
 	http.post('/favourites', async ({ request }) => {
 		const { clickedId } = (await request.json()) as Record<string, string>;
 
-		favourites.includes(clickedId)
-			? (favourites = favourites.filter(id => id !== clickedId))
-			: favourites.push(clickedId);
+		favourites.includes(clickedId) ? (favourites = favourites.filter(id => id !== clickedId)) : favourites.push(clickedId);
 		localStorage.setItem('favourites', JSON.stringify(favourites));
 
 		return new HttpResponse(null, { status: 200 });

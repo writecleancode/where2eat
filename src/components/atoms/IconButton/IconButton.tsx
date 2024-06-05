@@ -1,5 +1,5 @@
-import { IconButtonProps } from 'src/types/types';
 import { Icon, IconTwo, Wrapper } from './IconButton.styles';
+import { IconButtonProps } from 'src/types/types';
 
 export const IconButton = ({ iconURL, iconTwoURL, label, isActive, ...props }: IconButtonProps) => {
 	return (

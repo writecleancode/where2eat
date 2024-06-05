@@ -5,6 +5,7 @@ import { TypeContext } from 'src/providers/TypeProvider';
 import { cateringEstabilishmentsTypes } from 'src/data/cateringEstabilishmentsTypes';
 import { NavButtonsWrapper } from 'src/components/atoms/NavButtonsWrapper/NavButtonsWrapper';
 import { StyledNavLink } from 'src/components/atoms/StyledLink/StyledNavButton';
+import { basePath } from 'src/utils/base-path';
 import { SeparatingLine } from './NavLinksFilters.styles';
 import { NavLinksFiltersProps } from 'src/types/types';
 
@@ -18,7 +19,7 @@ export const NavLinksFilters = ({ $isDesktop }: NavLinksFiltersProps) => {
 			<NavButtonsWrapper $isDesktop={$isDesktop}>
 				{cateringEstabilishmentsTypes.map(({ title, value, path }) => (
 					<StyledNavLink
-						to={`/${currentCategory}/${path}`}
+						to={`${basePath}/${currentCategory}/${path}`}
 						key={value}
 						$isActive={currentType === path}
 						$isReversed

@@ -1,6 +1,6 @@
 # Where2Eat
 
-🌐 [LIVE DEMO](https://google.pl)
+🌐 [LIVE DEMO](https://writecleancode.github.io/where2eat/)
 
 
 
@@ -46,10 +46,12 @@ React libraries used:
 
 Backend mock:
 - **Mock Serice Worker**
+- part of the data stored at **DatoCMS**
 
 Data read/write:
 - **Axios**
 - **REST API**
+- **GraphQL** (to get data from DatoCMS)
 
 Unit tests written with:
 - **React Testing Library**
@@ -91,6 +93,8 @@ Build tool:
     - Axios
 
     - REST API
+
+    - GraphQL
 
     - React Testing Library
 

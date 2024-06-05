@@ -1,5 +1,5 @@
 import { StyledPlaceName } from 'src/components/atoms/StyledPlaceName/StyledPlaceName';
-import { CateringEstablishmentDetailsProps } from 'src/types/types';
+import { basePath } from 'src/utils/base-path';
 import {
 	CloseButton,
 	ContactWrapper,
@@ -10,6 +10,7 @@ import {
 	StyledPicture,
 	Wrapper,
 } from './CateringEstablishmentDetails.styles';
+import { CateringEstablishmentDetailsProps } from 'src/types/types';
 
 export const CateringEstablishmentDetails = ({
 	handleCloseModal,
@@ -19,7 +20,7 @@ export const CateringEstablishmentDetails = ({
 		<Wrapper>
 			<StyledPlaceName>{name}</StyledPlaceName>
 			<ListAndImgWrapper>
-				<StyledPicture src={imgURL} alt={imgAlt} />
+				<StyledPicture src={`${basePath}/${imgURL}`} alt={imgAlt} />
 				<StyledList>
 					{openHours.map(({ openingAt, closingAt, dayOfWeek }) => (
 						<StyledListItem key={dayOfWeek}>
@@ -36,7 +37,7 @@ export const CateringEstablishmentDetails = ({
 				<p>{phoneNumber}</p>
 			</ContactWrapper>
 			<CloseButton onClick={handleCloseModal} aria-label='close modal' type='button'>
-				<img src='/icons/x-mark.svg' alt='' />
+				<img src={`${basePath}/icons/x-mark.svg`} alt='' />
 			</CloseButton>
 		</Wrapper>
 	);

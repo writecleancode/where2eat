@@ -1,14 +1,6 @@
 import { IconButton } from 'src/components/atoms/IconButton/IconButton';
-import {
-	IconsWrapper,
-	Info,
-	InfoDesciption,
-	InfoRow,
-	InfoWrapper,
-	Picture,
-	Title,
-	Wrapper,
-} from './CateringEstablishmentCard.styles';
+import { basePath } from 'src/utils/base-path';
+import { IconsWrapper, Info, InfoDesciption, InfoRow, InfoWrapper, Picture, Title, Wrapper } from './CateringEstablishmentCard.styles';
 import { CateringEstablishmentCardProps } from 'src/types/types';
 
 const currentDay = new Date().getDay();
@@ -18,25 +10,12 @@ export const CateringEstablishmentCard = ({
 	handleOpenModal,
 	handleVisitedStatus,
 	handleFavouritesStatus,
-	cateringEstablishment: {
-		id,
-		type,
-		name,
-		imgURL,
-		imgAlt,
-		adress,
-		distance,
-		ratings,
-		prices,
-		openHours,
-		isVisited,
-		isFavourite,
-	},
+	cateringEstablishment: { id, type, name, imgURL, imgAlt, adress, distance, ratings, prices, openHours, isVisited, isFavourite },
 }: CateringEstablishmentCardProps) => {
 	return (
 		<Wrapper>
 			<Title>{name}</Title>
-			<Picture src={imgURL} alt={imgAlt} />
+			<Picture src={`${basePath}/${imgURL}`} alt={imgAlt} />
 			<InfoWrapper>
 				<InfoRow>
 					<Info>{distance} km</Info>
@@ -60,21 +39,17 @@ export const CateringEstablishmentCard = ({
 				</InfoRow>
 			</InfoWrapper>
 			<IconsWrapper>
+				<IconButton iconURL={`${basePath}/icons/info.svg`} label='Show more details' onClick={() => handleOpenModal(id)} />
 				<IconButton
-					iconURL='/icons/info.svg'
-					label='Show more details'
-					onClick={() => handleOpenModal(id)}
-				/>
-				<IconButton
-					iconURL='/icons/check.svg'
-					iconTwoURL='/icons/check-fill.svg'
+					iconURL={`${basePath}/icons/check.svg`}
+					iconTwoURL={`${basePath}/icons/check-fill.svg`}
 					label='Mark as visited'
 					isActive={isVisited}
 					onClick={() => handleVisitedStatus(index, id)}
 				/>
 				<IconButton
-					iconURL='/icons/heart.svg'
-					iconTwoURL='/icons/heart-fill.svg'
+					iconURL={`${basePath}/icons/heart.svg`}
+					iconTwoURL={`${basePath}/icons/heart-fill.svg`}
 					label='Add to favourites'
 					isActive={isFavourite}
 					onClick={() => handleFavouritesStatus(index, id)}
