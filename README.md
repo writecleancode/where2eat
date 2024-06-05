@@ -29,17 +29,17 @@ The application's function is to mimic finding dining establishments nearby. Key
 
 The application was written mainly to consolidate React, unit tests, Storybook and Typescript, and to practice data retrieval with the Rest API architecture using Axios.
 
-The app was written based on a mobile-first approach and it's fully responsive. 📱💻🖥
+The app was written based on a mobile-first approach and it's fully responsive 📱💻🖥
 
-Accessibility is at a high level. ♿
+Accessibility is at a high level ♿
 
-The app has it's own favicon. ⚡
+The app has it's own favicon ⚡
 
 Lines of code rewritten from tutorials: 0 ✔
 
-The layout was designed by me in Figma. 🖍
+The layout was designed by me in Figma 🖍
 
-All photos have been cropped and their size has been reduced accordingly (to minimize file size). ✂📐
+All photos have been cropped and their size has been reduced accordingly (to minimize file size) ✂📐
 
 Framework:
 - **React**
