@@ -135,6 +135,9 @@ Components structure:
 Designed with:
 - **Figma**
 
+Images editing:
+- **GIMP**
+
 
 
 ## SETUP
