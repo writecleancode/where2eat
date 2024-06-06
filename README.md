@@ -1,21 +1,16 @@
 # Where2Eat
 
-🌐 [LIVE DEMO](https://writecleancode.github.io/where2eat/)
+🌐 [**LIVE DEMO**](https://writecleancode.github.io/where2eat/)
 
 
 
-The application's function is to mimic finding dining establishments nearby. Key features:
-- **choice of** restaurant **type** (bar, pizzeria, fast food, restaurant, oriental cuisine)
-- display of places **meeting certain kreyteria** (unvisited, favorites, highly rated, currently open)
-- **marking places** as visited and/or favorites
-- **sorting** of results
-- **search** by name
-- displaying **current promotions**
-
+The application's function is to mimic finding dining establishments nearby.
 
 # Table of contents
 
 1. [General info](#general-info)
+
+2. [Features](#features)
 
 2. [Technologies](#technologies)
 
@@ -40,6 +35,55 @@ Lines of code rewritten from tutorials: 0 ✔
 The layout was designed by me in Figma 🖍
 
 All photos have been cropped and their size has been reduced accordingly (to minimize file size) ✂📐
+
+
+
+## Features
+
+- **choice of** restaurant **type** (bar, pizzeria, fast food, restaurant, oriental cuisine)
+- display of places **meeting certain kreyteria** (unvisited, favorites, highly rated, currently open)
+- **marking places** as visited and/or favorites
+- **sorting** of results
+- **search** by name
+- displaying **current promotions**
+
+
+
+## TECHNOLOGIES
+
+1. Vite
+
+2. Typescript
+
+3. React
+
+    - Styled Components (with SASS)
+
+    - React Modal
+
+    - React Router
+
+    - Mock Service Worker
+
+    - Axios
+
+    - REST API
+
+    - GraphQL
+
+    - React Testing Library
+
+    - Vitest
+
+    - Jest
+
+    - Axios Mock Adapter
+
+    - Storybook
+
+---
+
+More accurate informations about technologies used
 
 Framework:
 - **React**
@@ -82,40 +126,6 @@ Build tool:
 
 Components structure:
 - **Atomic Design**
-
-
-
-## TECHNOLOGIES
-
-1. Vite
-
-2. Typescript
-
-3. React
-
-    - Styled Components (with SASS)
-
-    - React Modal
-
-    - React Router
-
-    - Mock Service Worker
-
-    - Axios
-
-    - REST API
-
-    - GraphQL
-
-    - React Testing Library
-
-    - Vitest
-
-    - Jest
-
-    - Axios Mock Adapter
-
-    - Storybook
 
 
 
