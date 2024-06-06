@@ -6,7 +6,7 @@ const mockedPlace = {
 	type: 'pizzeria',
 	typeName: 'pizzeria',
 	name: 'O Sole Mio',
-	imgURL: '/img/o_sole_mio.jpg',
+	imgURL: 'img/o_sole_mio.jpg',
 	imgAlt: 'pizza',
 	adress: 'Wolności 100, Kraków',
 	adressLong: 'Wolności 100, 30-661 Kraków',

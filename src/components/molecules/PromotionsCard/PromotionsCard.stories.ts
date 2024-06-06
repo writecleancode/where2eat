@@ -8,9 +8,9 @@ const meta = {
 	},
 	args: {
 		promotionItem: {
-			placeName: 'Ga Grasso',
+			placeName: 'Da Grasso',
 			image: {
-				url: '/img/da_grasso.jpg',
+				url: 'img/da_grasso.jpg',
 				alt: 'pizza',
 			},
 			promotionsList: [
