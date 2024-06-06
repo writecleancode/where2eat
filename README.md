@@ -90,6 +90,12 @@ All photos have been cropped and their size has been reduced accordingly (to min
 
 More accurate informations about technologies used
 
+Build tool:
+- **Vite**
+
+Language:
+- **Typescript**
+
 Framework:
 - **React**
 
@@ -122,12 +128,6 @@ Styles:
 
 Stories:
 - **Storybook**
-
-Language:
-- **Typescript**
-
-Build tool:
-- **Vite**
 
 Components structure:
 - **Atomic Design**
