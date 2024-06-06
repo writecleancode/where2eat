@@ -24,6 +24,8 @@ The application's function is to mimic finding dining establishments nearby.
 
 The application was written mainly to consolidate React, unit tests, Storybook and Typescript, and to practice data retrieval with the Rest API architecture using Axios.
 
+Part of the data is fetched from DatoCMS with GraphQL just to demonstrate the ability of using GraphQL.
+
 The app was written based on a mobile-first approach and it's fully responsive 📱💻🖥
 
 Accessibility is at a high level ♿
@@ -34,7 +36,7 @@ Lines of code rewritten from tutorials: 0 ✔
 
 The layout was designed by me in Figma 🖍
 
-All photos have been cropped and their size has been reduced accordingly (to minimize file size) ✂📐
+All photos have been cropped and their size has been reduced accordingly (to minimize file size) 🖼✂
 
 
 
@@ -42,9 +44,10 @@ All photos have been cropped and their size has been reduced accordingly (to min
 
 - **choice of** restaurant **type** (bar, pizzeria, fast food, restaurant, oriental cuisine)
 - display of places **meeting certain kreyteria** (unvisited, favorites, highly rated, currently open)
-- **marking places** as visited and/or favorites
+- **adding places** to favorites
+- **marking places** as visited
 - **sorting** of results
-- **search** by name
+- **searching** by name
 - displaying **current promotions**
 
 
@@ -80,6 +83,8 @@ All photos have been cropped and their size has been reduced accordingly (to min
     - Axios Mock Adapter
 
     - Storybook
+
+4. Figma
 
 ---
 
@@ -126,6 +131,9 @@ Build tool:
 
 Components structure:
 - **Atomic Design**
+
+Designed with:
+- **Figma**
 
 
 
