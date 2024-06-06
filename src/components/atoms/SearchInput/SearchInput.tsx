@@ -37,8 +37,8 @@ export const SearchInput = () => {
 
 	return (
 		<Wrapper>
-			<StyledInput type='text' aria-label='search' id='search' value={inputValue} onChange={handleSearchInput} />
-			<StyledLabel htmlFor='search' aria-label='search'>
+			<StyledInput type='text' id='search' aria-label='search' value={inputValue} onChange={handleSearchInput} />
+			<StyledLabel htmlFor='search'>
 				<StyledIcon src={`${basePath}/icons/search.svg`} alt='' />
 			</StyledLabel>
 		</Wrapper>
