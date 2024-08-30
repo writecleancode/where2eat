@@ -6,6 +6,8 @@
 
 The application's function is to mimic finding dining establishments nearby.
 
+
+
 # Table of contents
 
 1. [General info](#general-info)

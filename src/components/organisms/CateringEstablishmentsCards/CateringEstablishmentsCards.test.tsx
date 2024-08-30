@@ -87,5 +87,8 @@ describe('Catering Establishments Cards', () => {
 		fireEvent.click(barTypeButton);
 		fireEvent.click(highlyRatedButton);
 		await screen.findByText('No highly rated catering establishments of type bar found in your area');
+
+		fireEvent.click(screen.getByText('any'));
+		fireEvent.click(screen.getByText('All'));
 	});
 });
