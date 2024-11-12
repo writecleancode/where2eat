@@ -94,7 +94,6 @@ export type CategoryProviderProps = {
 
 export type CateringEstablishmentsContextType = {
 	cateringEstablishments: never[] | catetingEstablishmentsType[];
-	setCateringEstablishments: Dispatch<SetStateAction<never[] | catetingEstablishmentsType[]>>;
 	setSortedCateringEstablishments: (placesToSort: catetingEstablishmentsType[]) => void;
 	isLoading: boolean;
 	selectValue: string;

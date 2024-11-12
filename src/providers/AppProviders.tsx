@@ -1,4 +1,6 @@
 import { BrowserRouter as Router } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { store } from 'src/store';
 import { ThemeProvider } from 'styled-components';
 import { theme } from 'src/assets/styles/theme';
 import { NavProvider } from './NavProvider';
@@ -11,18 +13,20 @@ import { AppProvidersType } from 'src/types/types';
 export const AppProviders = ({ children }: AppProvidersType) => {
 	return (
 		<Router>
-			<ThemeProvider theme={theme}>
-				<NavProvider>
-					<CategoryProvider>
-						<TypeProvider>
-							<CateringEstablishmentsProvider>
-								<GlobalStyle />
-								{children}
-							</CateringEstablishmentsProvider>
-						</TypeProvider>
-					</CategoryProvider>
-				</NavProvider>
-			</ThemeProvider>
+			<Provider store={store}>
+				<ThemeProvider theme={theme}>
+					<NavProvider>
+						<CategoryProvider>
+							<TypeProvider>
+								<CateringEstablishmentsProvider>
+									<GlobalStyle />
+									{children}
+								</CateringEstablishmentsProvider>
+							</TypeProvider>
+						</CategoryProvider>
+					</NavProvider>
+				</ThemeProvider>
+			</Provider>
 		</Router>
 	);
 };

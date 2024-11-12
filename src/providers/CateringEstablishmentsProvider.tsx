@@ -1,8 +1,10 @@
 import { createContext, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useLoading } from 'src/hooks/useLoading';
 import { usePlaces } from 'src/hooks/usePlaces';
 import { useSort } from 'src/hooks/useSort';
 import { sortOptions } from 'src/mocks/data/sortOptions';
+import { handleFavouriteStaus, handleVisitedStaus, setCateringEstablishments } from 'src/store';
 import { CateringEstablishmentsContextType, CateringEstablishmentsProviderProps, catetingEstablishmentsType } from 'src/types/types';
 
 const initialLoadingState = true;
@@ -10,7 +12,6 @@ const initialSearchState = false;
 
 export const CateringEstablishmentsContext = createContext<CateringEstablishmentsContextType>({
 	cateringEstablishments: [],
-	setCateringEstablishments: () => {},
 	setSortedCateringEstablishments: () => {},
 	isLoading: initialLoadingState,
 	selectValue: '',
@@ -23,7 +24,8 @@ export const CateringEstablishmentsContext = createContext<CateringEstablishment
 });
 
 export const CateringEstablishmentsProvider = ({ children }: CateringEstablishmentsProviderProps) => {
-	const [cateringEstablishments, setCateringEstablishments] = useState<never[] | catetingEstablishmentsType[]>([]);
+	const cateringEstablishments = useSelector(state => state.cateringEstablishments);
+	const dispatch = useDispatch();
 	const [selectValue, setSelectValue] = useState(sortOptions[0].value);
 	const [isSearchActive, setSearchState] = useState(initialSearchState);
 	const { isLoading, setLoadingCompleted } = useLoading();
@@ -31,7 +33,7 @@ export const CateringEstablishmentsProvider = ({ children }: CateringEstablishme
 	const { handleSortPlaces } = useSort();
 
 	const setSortedCateringEstablishments = (placesToSort: catetingEstablishmentsType[]) => {
-		setCateringEstablishments(handleSortPlaces(placesToSort, selectValue));
+		dispatch(setCateringEstablishments({ cateringEstablishments: handleSortPlaces(placesToSort, selectValue) }));
 	};
 
 	const getSortedCateringEstablishments = async (category: string | undefined, type: string | undefined) => {
@@ -41,19 +43,11 @@ export const CateringEstablishmentsProvider = ({ children }: CateringEstablishme
 	};
 
 	const toggleVisitedStatus = (index: number) => {
-		setCateringEstablishments([
-			...cateringEstablishments.slice(0, index),
-			{ ...cateringEstablishments[index], isVisited: !cateringEstablishments[index].isVisited },
-			...cateringEstablishments.slice(index + 1),
-		]);
+		dispatch(handleVisitedStaus({ index }));
 	};
 
 	const toggleFavouriteStaus = (index: number) => {
-		setCateringEstablishments([
-			...cateringEstablishments.slice(0, index),
-			{ ...cateringEstablishments[index], isFavourite: !cateringEstablishments[index].isFavourite },
-			...cateringEstablishments.slice(index + 1),
-		]);
+		dispatch(handleFavouriteStaus({ index }));
 	};
 
 	const handleSearchState = (searchPhrase: string) => {
@@ -66,7 +60,6 @@ export const CateringEstablishmentsProvider = ({ children }: CateringEstablishme
 		<CateringEstablishmentsContext.Provider
 			value={{
 				cateringEstablishments,
-				setCateringEstablishments,
 				setSortedCateringEstablishments,
 				isLoading,
 				selectValue,
