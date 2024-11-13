@@ -4,13 +4,8 @@ import { useLoading } from 'src/hooks/useLoading';
 import { usePlaces } from 'src/hooks/usePlaces';
 import { useSort } from 'src/hooks/useSort';
 import { sortOptions } from 'src/mocks/data/sortOptions';
-import { handleFavouriteStaus, handleVisitedStatus, setCateringEstablishments } from 'src/store';
-import {
-	CateringEstablishmentsContextType,
-	CateringEstablishmentsProviderProps,
-	cateringEstablishmentsStateType,
-	catetingEstablishmentsType,
-} from 'src/types/types';
+import { handleFavouriteStaus, handleVisitedStatus, RootState, setCateringEstablishments } from 'src/store';
+import { CateringEstablishmentsContextType, CateringEstablishmentsProviderProps, catetingEstablishmentsType } from 'src/types/types';
 
 const initialLoadingState = true;
 const initialSearchState = false;
@@ -29,7 +24,7 @@ export const CateringEstablishmentsContext = createContext<CateringEstablishment
 });
 
 export const CateringEstablishmentsProvider = ({ children }: CateringEstablishmentsProviderProps) => {
-	const cateringEstablishments = useSelector((state: cateringEstablishmentsStateType) => state.cateringEstablishments);
+	const cateringEstablishments = useSelector((state: RootState) => state.cateringEstablishments);
 	const dispatch = useDispatch();
 	const [selectValue, setSelectValue] = useState(sortOptions[0].value);
 	const [isSearchActive, setSearchState] = useState(initialSearchState);

@@ -31,3 +31,5 @@ export const store = configureStore({
 		cateringEstablishments: cateringEstablishmentsSlice.reducer,
 	},
 });
+
+export type RootState = ReturnType<typeof store.getState>;

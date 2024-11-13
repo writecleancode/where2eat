@@ -27,10 +27,6 @@ export type promotionsDataType = {
 	promotionsList: string[];
 };
 
-export type cateringEstablishmentsStateType = {
-	cateringEstablishments: catetingEstablishmentsType[];
-};
-
 export type DatoCmsPromotionsDataType = {
 	placeName: string;
 	image: {
