@@ -1,65 +1,33 @@
-import { createStore } from 'redux';
+import { catetingEstablishmentsType } from 'src/types/types';
+import { configureStore, createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
-	cateringEstablishments: [],
-};
+const initialcateringEstablishments: catetingEstablishmentsType[] = [];
 
-export const setCateringEstablishments = payload => {
-	return {
-		type: 'cateringEstablishments/set',
-		payload,
-	};
-};
+const cateringEstablishmentsSlice = createSlice({
+	name: 'cateringEstablishments',
+	initialState: initialcateringEstablishments,
+	reducers: {
+		setCateringEstablishments(state, action) {
+			state.at(0); // this line is just TypeScript not to display warning that "'state' is declaed but the value is never read"
+			return action.payload;
+		},
 
-export const handleVisitedStaus = payload => {
-	return {
-		type: 'cateringEstablishments/handleVisitedStaus',
-		payload,
-	};
-};
+		handleVisitedStatus(state, action) {
+			const index = action.payload;
+			state[index].isVisited = !state[index].isVisited;
+		},
 
-export const handleFavouriteStaus = payload => {
-	return {
-		type: 'cateringEstablishments/handleFavouriteStaus',
-		payload,
-	};
-};
+		handleFavouriteStaus(state, action) {
+			const index = action.payload;
+			state[index].isFavourite = !state[index].isFavourite;
+		},
+	},
+});
 
-const cateringEstablishmentsReducer = (state = initialState, action) => {
-	let index = null;
+export const { setCateringEstablishments, handleVisitedStatus, handleFavouriteStaus } = cateringEstablishmentsSlice.actions;
 
-	switch (action.type) {
-		case 'cateringEstablishments/set':
-			return {
-				...state,
-				cateringEstablishments: action.payload.cateringEstablishments,
-			};
-
-		case 'cateringEstablishments/handleVisitedStaus':
-			index = action.payload.index;
-			return {
-				...state,
-				cateringEstablishments: [
-					...state.cateringEstablishments.slice(0, index),
-					{ ...state.cateringEstablishments[index], isVisited: !state.cateringEstablishments[index].isVisited },
-					...state.cateringEstablishments.slice(index + 1),
-				],
-			};
-
-		case 'cateringEstablishments/handleFavouriteStaus':
-			index = action.payload.index;
-			return {
-				...state,
-				cateringEstablishments: [
-					...state.cateringEstablishments.slice(0, index),
-					{ ...state.cateringEstablishments[index], isFavourite: !state.cateringEstablishments[index].isFavourite },
-					...state.cateringEstablishments.slice(index + 1),
-				],
-			};
-
-		default:
-			return state;
-	}
-};
-
-export const store = createStore(cateringEstablishmentsReducer);
+export const store = configureStore({
+	reducer: {
+		cateringEstablishments: cateringEstablishmentsSlice.reducer,
+	},
+});

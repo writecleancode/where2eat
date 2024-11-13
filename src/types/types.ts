@@ -27,6 +27,10 @@ export type promotionsDataType = {
 	promotionsList: string[];
 };
 
+export type cateringEstablishmentsStateType = {
+	cateringEstablishments: catetingEstablishmentsType[];
+};
+
 export type DatoCmsPromotionsDataType = {
 	placeName: string;
 	image: {
@@ -93,7 +97,7 @@ export type CategoryProviderProps = {
 };
 
 export type CateringEstablishmentsContextType = {
-	cateringEstablishments: never[] | catetingEstablishmentsType[];
+	cateringEstablishments: catetingEstablishmentsType[];
 	setSortedCateringEstablishments: (placesToSort: catetingEstablishmentsType[]) => void;
 	isLoading: boolean;
 	selectValue: string;

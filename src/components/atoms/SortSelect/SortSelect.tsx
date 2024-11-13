@@ -1,4 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { setCateringEstablishments } from 'src/store';
 import { CateringEstablishmentsContext } from 'src/providers/CateringEstablishmentsProvider';
 import { usePlaces } from 'src/hooks/usePlaces';
 import { useSort } from 'src/hooks/useSort';
@@ -7,8 +9,9 @@ import { SelectArrowDown, StyledOption, StyledSelect, Wrapper } from './SortSele
 
 export const SortSelect = () => {
 	const [sortOptions, setSortOptions] = useState([]);
+	const dispatch = useDispatch();
 	const { selectValue, setSelectValue } = useContext(CateringEstablishmentsContext);
-	const { cateringEstablishments, setCateringEstablishments } = useContext(CateringEstablishmentsContext);
+	const { cateringEstablishments } = useContext(CateringEstablishmentsContext);
 	const { getSortOptions } = usePlaces();
 	const { handleSortPlaces } = useSort();
 
@@ -23,7 +26,7 @@ export const SortSelect = () => {
 		if (!cateringEstablishments.length) return;
 
 		const data = handleSortPlaces(cateringEstablishments, selectValue);
-		setCateringEstablishments(data);
+		dispatch(setCateringEstablishments(data));
 	}, [selectValue]);
 
 	return (
