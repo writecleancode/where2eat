@@ -1,11 +1,11 @@
 import { useContext, useEffect } from 'react';
 import { usePromotions } from 'src/hooks/usePromotions';
+import { useLoading } from 'src/hooks/useLoading';
 import { CategoryContext } from 'src/providers/CategoryProvider';
 import { PromotionsCard } from 'src/components/molecules/PromotionsCard/PromotionsCard';
+import { LoadingGif } from 'src/components/atoms/LoadingGif/LoadingGif';
 import { NoResultsText } from 'src/components/atoms/NoResultsText/NoResultsText';
 import { Wrapper } from './OngoingPromotions.styles';
-import { useLoading } from 'src/hooks/useLoading';
-import { LoadingGif } from 'src/components/atoms/LoadingGif/LoadingGif';
 
 export const OngoingPromotions = () => {
 	const { promotions, getPromotionsData } = usePromotions();

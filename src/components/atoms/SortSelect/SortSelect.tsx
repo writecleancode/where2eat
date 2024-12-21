@@ -7,8 +7,7 @@ import { SelectArrowDown, StyledOption, StyledSelect, Wrapper } from './SortSele
 
 export const SortSelect = () => {
 	const [sortOptions, setSortOptions] = useState([]);
-	const { selectValue, setSelectValue } = useContext(CateringEstablishmentsContext);
-	const { cateringEstablishments, setCateringEstablishments } = useContext(CateringEstablishmentsContext);
+	const { selectValue, setSelectValue, cateringEstablishments, setCateringEstablishments } = useContext(CateringEstablishmentsContext);
 	const { getSortOptions } = usePlaces();
 	const { handleSortPlaces } = useSort();
 

@@ -1,7 +1,7 @@
-import { StyledNavLink } from './StyledNavButton';
+import { StyledNavLink } from './StyledNavLink';
 
 const meta = {
-	title: 'Components/Atoms/StyledLink',
+	title: 'Components/Atoms/StyledNavLink',
 	component: StyledNavLink,
 	parameters: {
 		layout: 'centered',

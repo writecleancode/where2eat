@@ -7,7 +7,7 @@ export const BurgerButton = ({ ...props }: BurgerButtonProps) => {
 	const { isNavOpen } = useContext(NavContext);
 
 	return (
-		<HamburgerWrapper {...props}>
+		<HamburgerWrapper {...props} aria-label={isNavOpen ? 'close navigation' : 'open navigation'}>
 			<HamburgerLineTop $isNavOpen={isNavOpen} />
 			<HamburgerLineMiddle $isNavOpen={isNavOpen} />
 			<HamburgerLineBottom $isNavOpen={isNavOpen} />

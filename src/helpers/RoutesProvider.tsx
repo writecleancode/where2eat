@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
-import { CateringEstablishments } from 'src/views/CateringEstablishments';
+import { CateringEstablishments } from 'src/views/CateringEstablishments/CateringEstablishments';
 
 export const RoutesProvider = () => {
 	return (

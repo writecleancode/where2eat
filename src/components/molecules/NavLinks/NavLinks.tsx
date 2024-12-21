@@ -4,7 +4,7 @@ import { CategoryContext } from 'src/providers/CategoryProvider';
 import { TypeContext } from 'src/providers/TypeProvider';
 import { navCategories } from 'src/data/navCategories';
 import { NavButtonsWrapper } from 'src/components/atoms/NavButtonsWrapper/NavButtonsWrapper';
-import { StyledNavLink } from 'src/components/atoms/StyledLink/StyledNavButton';
+import { StyledNavLink } from 'src/components/atoms/StyledNavLink/StyledNavLink';
 import { HorizontalLine } from 'src/components/atoms/HorizontalLine/HorizontalLine';
 import { basePath } from 'src/utils/base-path';
 
@@ -21,11 +21,7 @@ export const NavLinks = () => {
 	return (
 		<NavButtonsWrapper>
 			{navCategories.map(({ title, value, path }) => (
-				<StyledNavLink
-					to={`${basePath}/${path}/${currentType}`}
-					key={value}
-					onClick={closeNav}
-					$isActive={currentCategory === path}>
+				<StyledNavLink to={`${basePath}/${path}/${currentType}`} key={value} onClick={closeNav} $isActive={currentCategory === path}>
 					{title}
 				</StyledNavLink>
 			))}

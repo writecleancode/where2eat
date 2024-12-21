@@ -4,7 +4,7 @@ import { CategoryContext } from 'src/providers/CategoryProvider';
 import { TypeContext } from 'src/providers/TypeProvider';
 import { cateringEstabilishmentsTypes } from 'src/data/cateringEstabilishmentsTypes';
 import { NavButtonsWrapper } from 'src/components/atoms/NavButtonsWrapper/NavButtonsWrapper';
-import { StyledNavLink } from 'src/components/atoms/StyledLink/StyledNavButton';
+import { StyledNavLink } from 'src/components/atoms/StyledNavLink/StyledNavLink';
 import { basePath } from 'src/utils/base-path';
 import { SeparatingLine } from './NavLinksFilters.styles';
 import { NavLinksFiltersProps } from 'src/types/types';

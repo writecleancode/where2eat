@@ -84,7 +84,7 @@ export const Info = styled.p`
 	}
 `;
 
-export const InfoDesciption = styled.p`
+export const InfoDescription = styled.p`
 	color: #636363;
 	font-size: 1.2rem;
 `;

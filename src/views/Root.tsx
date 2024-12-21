@@ -1,8 +1,8 @@
 import { Route, Routes } from 'react-router-dom';
 import { AppProviders } from 'src/providers/AppProviders';
 import { MainTemplate } from 'src/components/templates/MainTemplate/MainTemplate';
-import { CateringEstablishments } from './CateringEstablishments';
-import { OngoingPromotions } from './OngoingPromotions';
+import { CateringEstablishments } from 'src/views/CateringEstablishments/CateringEstablishments';
+import { OngoingPromotions } from 'src/views/OngoingPromotions/OngoingPromotions';
 import { basePath } from 'src/utils/base-path';
 
 export const Root = () => {

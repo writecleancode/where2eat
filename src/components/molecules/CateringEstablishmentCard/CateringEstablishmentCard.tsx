@@ -1,6 +1,6 @@
 import { IconButton } from 'src/components/atoms/IconButton/IconButton';
 import { basePath } from 'src/utils/base-path';
-import { IconsWrapper, Info, InfoDesciption, InfoRow, InfoWrapper, Picture, Title, Wrapper } from './CateringEstablishmentCard.styles';
+import { IconsWrapper, Info, InfoDescription, InfoRow, InfoWrapper, Picture, Title, Wrapper } from './CateringEstablishmentCard.styles';
 import { CateringEstablishmentCardProps } from 'src/types/types';
 
 const currentDay = new Date().getDay();
@@ -19,23 +19,23 @@ export const CateringEstablishmentCard = ({
 			<InfoWrapper>
 				<InfoRow>
 					<Info>{distance} km</Info>
-					<InfoDesciption>{adress}</InfoDesciption>
+					<InfoDescription>{adress}</InfoDescription>
 				</InfoRow>
 				<InfoRow>
 					<Info>{type}</Info>
-					<InfoDesciption>Type</InfoDesciption>
+					<InfoDescription>Type</InfoDescription>
 				</InfoRow>
 				<InfoRow>
 					<Info>{ratings} / 5</Info>
-					<InfoDesciption>Ratings</InfoDesciption>
+					<InfoDescription>Ratings</InfoDescription>
 				</InfoRow>
 				<InfoRow>
 					<Info>{prices}</Info>
-					<InfoDesciption>Prices</InfoDesciption>
+					<InfoDescription>Prices</InfoDescription>
 				</InfoRow>
 				<InfoRow>
 					<Info>{`${openHours[currentDay].openingAt} - ${openHours[currentDay].closingAt}`}</Info>
-					<InfoDesciption>Today</InfoDesciption>
+					<InfoDescription>Today</InfoDescription>
 				</InfoRow>
 			</InfoWrapper>
 			<IconsWrapper>
